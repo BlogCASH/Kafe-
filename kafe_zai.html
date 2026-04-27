@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASHTAN Restorani | Mazali Taomlar va Muhit</title>
-    <meta name="description" content="CASHTAN restorani - eng mazali taomlar, qulay muhit va professional xizmat. Oila va do'stlar uchun ajoyib joy.">
+    <title>SARDOR Cafe | Mehmondo'stlik Va Mehmonlar</title>
+    <meta name="description" content="SARDOR Cafe - Yunusobodda eng mazali taomlar va qulay muhit. Siz uchun ishlaymiz.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- O'zgaruvchilar (CSS Variables) --- */
+        /* --- CSS O'zgaruvchilari --- */
         :root {
-            --primary-color: #d4a373; /* Oltinrang/qahva rangi */
-            --primary-dark: #a97142;
-            --text-color: #333333;
-            --text-light: #666666;
-            --bg-light: #fdfbf7; /* Krem foni */
-            --bg-dark: #222222;
+            --primary-color: #d35400; /* Zaytun/Isriq rangi - Kafe uchun mos */
+            --secondary-color: #f1c40f; /* Oltin sariq */
+            --dark-bg: #2c3e50;
+            --light-bg: #fdfbf7; /* Issiq krem rang */
+            --text-color: #444;
             --white: #ffffff;
-            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
             --transition: all 0.3s ease;
         }
 
-        /* --- Umumiy Sozlamalar (Reset) --- */
+        /* --- Umumiy Sozlamalar --- */
         * {
             margin: 0;
             padding: 0;
@@ -43,13 +42,12 @@
             font-family: 'Lato', sans-serif;
             color: var(--text-color);
             line-height: 1.6;
-            background-color: var(--bg-light);
-            overflow-x: hidden;
+            background-color: var(--light-bg);
         }
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
-            color: var(--text-color);
+            color: #2c3e50;
         }
 
         a {
@@ -76,48 +74,46 @@
             padding: 80px 0;
         }
 
-        /* --- Tugmalar (Buttons) --- */
+        /* --- Buttons --- */
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            border-radius: 50px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 30px;
             font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
             text-transform: uppercase;
             font-size: 0.9rem;
             letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
+        .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(211, 84, 0, 0.3);
         }
 
         .btn-outline {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            background: transparent;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-color);
+            background-color: transparent;
+            border: 2px solid var(--white);
             color: var(--white);
         }
 
-        /* --- Header / Navigatsiya --- */
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* --- Header & Logo --- */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             z-index: 1000;
             padding: 15px 0;
@@ -130,15 +126,23 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--primary-dark);
-            letter-spacing: 2px;
+            color: var(--dark-bg);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -1px;
+            text-transform: uppercase;
         }
 
         .logo span {
-            color: var(--text-color);
+            font-size: 1rem; /* 'Cafe' so'zi kichikroq */
+            color: var(--primary-color);
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 3px;
+            margin-left: 5px;
+            display: inline-block;
+            transform: translateY(-5px); /* Biroz yuqoriga ko'tarish uchun */
         }
 
         .nav-links {
@@ -149,6 +153,7 @@
         .nav-links a {
             font-weight: 700;
             font-size: 0.95rem;
+            color: var(--dark-bg);
             position: relative;
         }
 
@@ -163,48 +168,47 @@
             transition: var(--transition);
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
         .nav-links a:hover::after {
             width: 100%;
         }
 
-        .mobile-menu-btn {
+        .hamburger {
             display: none;
-            font-size: 1.5rem;
             cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--dark-bg);
         }
 
-        /* --- Hero Section (Bosh qism) --- */
+        /* --- Hero Section --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/seed/restaurant1/1920/1080.jpg') no-repeat center center/cover;
+            /* Kafe uchun issiqroq fon rasmi */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/seed/coffee_shop_vibes/1920/1080.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
-            justify-content: center;
             text-align: center;
             color: var(--white);
-            margin-top: 0;
-            padding-top: 80px; /* Header balandligi */
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content .highlight {
+            color: var(--secondary-color);
         }
 
         .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* --- Haqida (About) --- */
+        /* --- About Section --- */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -219,37 +223,9 @@
         .about-img img {
             border-radius: 10px;
             box-shadow: var(--shadow);
+            border: 8px solid var(--white);
         }
 
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-dark);
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--text-light);
-        }
-
-        .features {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .feature-item i {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-
-        /* --- Menu Section --- */
         .section-title {
             text-align: center;
             margin-bottom: 50px;
@@ -257,15 +233,18 @@
 
         .section-title h2 {
             font-size: 2.5rem;
+            color: var(--primary-color);
             margin-bottom: 10px;
         }
 
-        .section-title span {
-            color: var(--primary-color);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
+        .section-title p {
+            color: #777;
+            font-style: italic;
+        }
+
+        /* --- Menu Section --- */
+        .menu-section {
+            background-color: var(--white);
         }
 
         .menu-grid {
@@ -274,151 +253,102 @@
             gap: 30px;
         }
 
-        .menu-card {
-            background: var(--white);
-            border-radius: 15px;
+        .menu-item {
+            background: var(--light-bg);
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid #eee;
         }
 
-        .menu-card:hover {
-            transform: translateY(-10px);
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        .menu-img {
-            height: 200px;
+        .menu-thumb {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .menu-thumb img {
             width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: var(--transition);
         }
 
-        .menu-info {
-            padding: 20px;
+        .menu-item:hover .menu-thumb img {
+            transform: scale(1.05);
+        }
+
+        .menu-details {
+            padding: 25px;
+            text-align: center;
         }
 
         .menu-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 10px;
-            border-bottom: 1px dashed #ddd;
-            padding-bottom: 10px;
+            gap: 15px;
         }
 
         .menu-header h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .price {
-            font-weight: 700;
             color: var(--primary-color);
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: rgba(211, 84, 0, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
         }
 
-        .menu-info p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* --- Xizmatlar (Services) --- */
-        .services {
-            background-color: var(--bg-dark);
+        /* --- Features --- */
+        .features {
+            background-color: var(--primary-color);
             color: var(--white);
             text-align: center;
+            background-image: linear-gradient(rgba(211, 84, 0, 0.9), rgba(211, 84, 0, 0.9)), url('https://www.transparenttextures.com/patterns/food.png');
         }
 
-        .services .section-title h2 {
-            color: var(--white);
-        }
-
-        .service-grid {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
 
-        .service-item {
-            padding: 30px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            transition: var(--transition);
+        .feature-box {
+            padding: 20px;
         }
 
-        .service-item:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        .service-item i {
+        .feature-box i {
             font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .service-item h3 {
+            color: var(--secondary-color);
             margin-bottom: 15px;
+        }
+
+        .feature-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
             color: var(--white);
-        }
-
-        /* --- Reservation (Bron qilish) --- */
-        .reservation {
-            background: url('https://picsum.photos/seed/restaurant_interior/1920/600.jpg') no-repeat center center/cover;
-            position: relative;
-        }
-
-        .reservation::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-        }
-
-        .reservation-container {
-            position: relative;
-            z-index: 1;
-            background: var(--white);
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            outline: none;
-        }
-
-        .form-group input:focus {
-            border-color: var(--primary-color);
-        }
-
-        .full-width {
-            grid-column: span 2;
         }
 
         /* --- Footer --- */
         footer {
-            background-color: #111;
+            background-color: #222;
             color: #aaa;
             padding: 60px 0 20px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
@@ -426,29 +356,36 @@
         .footer-col h3 {
             color: var(--white);
             margin-bottom: 20px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            font-family: 'Playfair Display', serif;
         }
 
         .footer-col p {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 0.95rem;
+        }
+
+        .footer-col i {
+            width: 25px;
+            color: var(--primary-color);
         }
 
         .social-links a {
             display: inline-flex;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
             justify-content: center;
             align-items: center;
-            width: 35px;
-            height: 35px;
-            background: rgba(255,255,255,0.1);
-            color: var(--white);
             border-radius: 50%;
             margin-right: 10px;
+            color: var(--white);
             transition: var(--transition);
         }
 
         .social-links a:hover {
             background: var(--primary-color);
+            color: var(--white);
         }
 
         .copyright {
@@ -458,342 +395,309 @@
             font-size: 0.9rem;
         }
 
-        /* --- Responsive Media Queries --- */
-        @media (max-width: 992px) {
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
             .hero-content h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
+            
+            .logo {
+                font-size: 1.6rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px; /* Header balandligi */
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s;
+                box-shadow: -5px 0 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
             .about-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .features {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Mobil menyuni yashirish */
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .full-width {
-                grid-column: span 1;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            .btn {
-                padding: 10px 20px;
+            
+            .about-img {
+                margin-bottom: 30px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navigatsiya -->
+    <!-- Navigatsiya -->
     <header>
         <div class="container">
             <nav>
-                <div class="logo">CASHTAN<span>.</span></div>
+                <div class="logo">SARDOR <span>Cafe</span></div>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#bosh">Bosh sahifa</a></li>
                     <li><a href="#haqida">Biz haqimizda</a></li>
                     <li><a href="#menu">Menyu</a></li>
-                    <li><a href="#xizmatlar">Xizmatlar</a></li>
                     <li><a href="#aloqa">Aloqa</a></li>
-                    <li><a href="#bron" class="btn btn-primary" style="padding: 8px 20px; color: white;">Bron qilish</a></li>
                 </ul>
-                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <div class="hamburger" id="hamburger">
                     <i class="fas fa-bars"></i>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Bosh Sahifa (Hero) -->
     <section id="bosh" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Ta'mni Sevib Qoling</h1>
-                <p>CASHTAN restoraniga xush kelibsiz. Biz oshxona san'atini betakror muhit bilan birlashtiramiz. Oila va do'stlaringiz bilan xotiralar yaratishingiz uchun eng yaxshi joy.</p>
-                <a href="#menu" class="btn btn-primary">Menyuni ko'rish</a>
-                <a href="#haqida" class="btn btn-outline" style="color:white; border-color:white; margin-left:10px;">Batafsil</a>
+                <h1>SARDOR <span class="highlight">Cafe</span></h1>
+                <p>Har bir taom sevgi bilan tayyorlanadi. Bizda siz oilaviy muhit va mazali taomlarni topasiz.</p>
+                <a href="#aloqa" class="btn">Buyurtma berish</a>
+                <a href="#menu" class="btn btn-outline" style="margin-left: 10px;">Menyu</a>
             </div>
         </div>
     </section>
 
-    <!-- Biz haqimizda -->
+    <!-- Biz Haqimizda -->
     <section id="haqida" class="section-padding">
         <div class="container">
             <div class="about-grid">
                 <div class="about-img">
-                    <img src="https://picsum.photos/seed/chef_cooking/600/450.jpg" alt="Oshpaz pishirayotgan">
+                    <img src="https://picsum.photos/seed/cafe_interior_warm/600/400.jpg" alt="Kafe ichki ko'rinishi">
                 </div>
                 <div class="about-text">
                     <div class="section-title" style="text-align: left;">
-                        <span>An'analar va Sifat</span>
-                        <h2>Bizning Hikoyamiz</h2>
+                        <span>Bizning Hikoyamiz</span>
+                        <h2>Sardor Cafe Haqida</h2>
                     </div>
-                    <p>CASHTAN 2015 yildan buyon eng mazali milliy va Yevropa taomlarini mehmonlarga taqdim etib kelmoqda. Bizning oshpazlarimiz faqat tabiiy va yangi mahsulotlardan foydalanadi.</p>
-                    <p>Bizning maqsadimiz - sizga shunchaki taom bermaslik, balki betakror taomni qulay va sho'x muhitda tatib ko'rish imkoniyatini yaratishdir.</p>
-                    
-                    <div class="features">
-                        <div class="feature-item">
-                            <i class="fas fa-leaf"></i>
-                            <span>Tabiiy Mahsulotlar</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-award"></i>
-                            <span>Professionallar</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-wine-glass"></i>
-                            <span>Zamonaviy Muhit</span>
-                        </div>
-                    </div>
+                    <p style="margin: 20px 0;">
+                        "Sardor" shunchaki nom emas, balki sifat va mehmondo'stlik belgisidir. Bizning kafemizda Sardor har doim mehmonlarni kutib olishga tayyor.
+                    </p>
+                    <p style="margin-bottom: 20px;">
+                        Bizda har bir kichik narsa e'tiborga olingan: Arzon narxlar, toza mahsulotlar va oilaviy muhit. Do'stlaringiz bilan keling, sho'x suhbatlar va mazli taomlardan bahramand bo'ling.
+                    </p>
+                    <ul style="margin-top: 20px;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-heart" style="color: var(--primary-color); margin-right: 10px;"></i> Halol mahsulotlar</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-heart" style="color: var(--primary-color); margin-right: 10px;"></i> Tezkor xizmat</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-heart" style="color: var(--primary-color); margin-right: 10px;"></i> Bolalar uchun joy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Xizmatlar / Imkoniyatlar -->
+    <section class="section-padding features">
+        <div class="container">
+            <div class="section-title">
+                <span style="color: rgba(255,255,255,0.8);">Nima uchun biz?</span>
+                <h2 style="color: white;">Bizning Afzalliklarimiz</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Mazali Taomlar</h3>
+                    <p>Uy sharoitidagi taomlar va milliy ta'mlar.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Issiq Ichimliklar</h3>
+                    <p>Sovuq kunda issiq qahva va choylar tayyorlaymiz.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-wifi"></i>
+                    <h3>Bepul Wi-Fi</h3>
+                    <p>Ish yoki o'qish uchun qulay joy va internet.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Menyu -->
-    <section id="menu" class="section-padding" style="background-color: #fff;">
+    <section id="menu" class="section-padding menu-section">
         <div class="container">
             <div class="section-title">
-                <span>Taklif etamiz</span>
-                <h2>Mashhur Taomlar</h2>
-                <p style="color: #666; margin-top: 10px;">Bizning oshpazimizning maxsus to'plami</p>
+                <span>Tanlov qiling</span>
+                <h2>Kafe Menyusi</h2>
             </div>
-
+            
             <div class="menu-grid">
                 <!-- Taom 1 -->
-                <div class="menu-card">
-                    <img src="https://picsum.photos/seed/steak/400/300.jpg" alt="Steak" class="menu-img">
-                    <div class="menu-info">
+                <div class="menu-item">
+                    <div class="menu-thumb">
+                        <img src="https://picsum.photos/seed/lagman_noodle/400/300.jpg" alt="Lag'mon">
+                    </div>
+                    <div class="menu-details">
                         <div class="menu-header">
-                            <h3>Go'shtli Steak</h3>
-                            <span class="price">150,000 so'm</span>
+                            <h3>Lag'mon</h3>
+                            <span class="price">30,000 so'm</span>
                         </div>
-                        <p>Mazali qovurilgan steak, sabzavotlar va maxsus sous bilan.</p>
+                        <p>Qo'l yasova, boy sous va yangi ko'katlar.</p>
                     </div>
                 </div>
 
                 <!-- Taom 2 -->
-                <div class="menu-card">
-                    <img src="https://picsum.photos/seed/pizza/400/300.jpg" alt="Pizza" class="menu-img">
-                    <div class="menu-info">
+                <div class="menu-item">
+                    <div class="menu-thumb">
+                        <img src="https://picsum.photos/seed/doner_kebab/400/300.jpg" alt="Doner">
+                    </div>
+                    <div class="menu-details">
                         <div class="menu-header">
-                            <h3>CASHTAN Pizza</h3>
-                            <span class="price">85,000 so'm</span>
+                            <h3>Goshtli Doner</h3>
+                            <span class="price">28,000 so'm</span>
                         </div>
-                        <p>Italiya uslubidagi pishloq, zaytun va quritilgan pomidor bilan.</p>
+                        <p>To'g'ralgan non va sabzavotlar bilan doner.</p>
                     </div>
                 </div>
 
                 <!-- Taom 3 -->
-                <div class="menu-card">
-                    <img src="https://picsum.photos/seed/pilaf/400/300.jpg" alt="Osh" class="menu-img">
-                    <div class="menu-info">
+                <div class="menu-item">
+                    <div class="menu-thumb">
+                        <img src="https://picsum.photos/seed/hamburger/400/300.jpg" alt="Burger">
+                    </div>
+                    <div class="menu-details">
                         <div class="menu-header">
-                            <h3>Maxsus Osh</h3>
-                            <span class="price">60,000 so'm</span>
+                            <h3>Sardor Burger</h3>
+                            <span class="price">35,000 so'm</span>
                         </div>
-                        <p>An'anaviy O'zbek oshi, mayda go'sht va qazi bilan.</p>
+                        <p>Natural go'sht, pishloq va maxsus sous.</p>
                     </div>
                 </div>
 
                 <!-- Taom 4 -->
-                <div class="menu-card">
-                    <img src="https://picsum.photos/seed/pasta/400/300.jpg" alt="Pasta" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-header">
-                            <h3>Tom Yom Pasta</h3>
-                            <span class="price">75,000 so'm</span>
-                        </div>
-                        <p>Osiyo ta'mi bilan tayyorlangan dengiz mahsulotlari pasta.</p>
+                <div class="menu-item">
+                    <div class="menu-thumb">
+                        <img src="https://picsum.photos/seed/pizza_slice/400/300.jpg" alt="Pizza">
                     </div>
-                </div>
-                
-                <!-- Taom 5 -->
-                <div class="menu-card">
-                    <img src="https://picsum.photos/seed/salad/400/300.jpg" alt="Salad" class="menu-img">
-                    <div class="menu-info">
+                    <div class="menu-details">
                         <div class="menu-header">
-                            <h3>Sesar Salati</h3>
+                            <h3>Pizza</h3>
                             <span class="price">45,000 so'm</span>
                         </div>
-                        <p>Pishloq, kruton va tuxum bilan yangi sabzavotlar salati.</p>
+                        <p>Italiya uslubidagi, mol yoki qo'zi go'shti bilan.</p>
+                    </div>
+                </div>
+
+                <!-- Taom 5 -->
+                <div class="menu-item">
+                    <div class="menu-thumb">
+                        <img src="https://picsum.photos/seed/coffee_cup/400/300.jpg" alt="Cappuccino">
+                    </div>
+                    <div class="menu-details">
+                        <div class="menu-header">
+                            <h3>Cappuccino</h3>
+                            <span class="price">18,000 so'm</span>
+                        </div>
+                        <p>Haqiqiy arabica qahvasi va sutdan tayyorlangan.</p>
                     </div>
                 </div>
 
                 <!-- Taom 6 -->
-                <div class="menu-card">
-                    <img src="https://picsum.photos/seed/dessert/400/300.jpg" alt="Desert" class="menu-img">
-                    <div class="menu-info">
+                <div class="menu-item">
+                    <div class="menu-thumb">
+                        <img src="https://picsum.photos/seed/cake_slice/400/300.jpg" alt="Tort">
+                    </div>
+                    <div class="menu-details">
                         <div class="menu-header">
-                            <h3>Tiramisu</h3>
-                            <span class="price">40,000 so'm</span>
+                            <h3>Moyqaymoq Tort</h3>
+                            <span class="price">15,000 so'm</span>
                         </div>
-                        <p>Italiya kafe ta'mli klassik desert.</p>
+                        <p>Taomdan keyin tatlik uchun mazali tort.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Xarita va Aloqa -->
+    <section id="aloqa" style="background-color: var(--light-bg);">
+        <div class="container section-padding">
+            <div class="section-title">
+                <span>Biz Toping</span>
+                <h2>Aloqa</h2>
             </div>
             
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="#" class="btn btn-primary">To'liq menyuni yuklash</a>
-            </div>
-        </div>
-    </section>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div class="contact-info" style="padding: 30px; background: white; border-radius: 10px; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">Bog'lanish</h3>
+                    <p style="margin-bottom: 15px;"><i class="fas fa-map-marker-alt"></i> <strong>Manzil:</strong> Toshkent, Yunusobod tumani, Amir Temur shoh ko'chasi</p>
+                    <p style="margin-bottom: 15px;"><i class="fas fa-phone"></i> <strong>Telefon:</strong> +998 90 123 45 67</p>
+                    <p style="margin-bottom: 20px;"><i class="fas fa-clock"></i> <strong>Ish vaqti:</strong> 09:00 - 23:00</p>
+                    
+                    <h4 style="margin-bottom: 10px;">Ijtimoiy Tarmoqlar:</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
 
-    <!-- Xizmatlar -->
-    <section id="xizmatlar" class="section-padding services">
-        <div class="container">
-            <div class="section-title">
-                <span>Nimalar qila olamiz</span>
-                <h2>Bizning Xizmatlar</h2>
-            </div>
-            <div class="service-grid">
-                <div class="service-item">
-                    <i class="fas fa-birthday-cake"></i>
-                    <h3>To'y va Bayramlar</h3>
-                    <p>Katta zallar va maxsus menyolar bilan marosimlaringizni o'tkazish.</p>
+                <div class="map-wrapper" style="height: 350px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow);">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.5!2d69.2!3d41.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDIxJzAwLjAiTiA2OcKwMTInMDAuMCJF!5e0!3m2!1sen!2suz!4v1600000000000!5m2!1sen!2suz" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
                 </div>
-                <div class="service-item">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Biznes Uchrashuvlar</h3>
-                    <p>Shovqinsiz va qulay muhitda biznes tushliklari va kechki ovqatlar.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-truck"></i>
-                    <h3>Yetkazib Berish</h3>
-                    <p>Shahar bo'ylab tez va ishonchli yetkazib berish xizmati.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-music"></i>
-                    <h3>Jonli Musiqa</h3>
-                    <p>Har juma va shanba kunlari tungi ovqatlanganda jonli musiqa.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bron qilish -->
-    <section id="bron" class="section-padding reservation">
-        <div class="container">
-            <div class="reservation-container">
-                <div class="section-title">
-                    <span>Stol band qiling</h2>
-                    <h2 joylarni band qilish</h2>
-                    <p>Telefon qilishingiz shart emas, onlayn tarzda joy band qiling.</p>
-                </div>
-                <form class="form-grid" onsubmit="event.preventDefault(); alert('So\'rovingiz yuborildi! Tez orada operatorimiz siz bilan bog\'lanadi.');">
-                    <div class="form-group">
-                        <input type="text" placeholder="Ismingiz" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="Telefon raqamingiz" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="date" required>
-                    </div>
-                    <div class="form-group">
-                        <select>
-                            <option>12:00</option>
-                            <option>13:00</option>
-                            <option>14:00</option>
-                            <option>18:00</option>
-                            <option>19:00</option>
-                            <option>20:00</option>
-                            <option>21:00</option>
-                        </select>
-                    </div>
-                    <div class="form-group full-width">
-                        <select>
-                            <option>2 kishi</option>
-                            <option>3 kishi</option>
-                            <option>4 kishi</option>
-                            <option>5-10 kishi</option>
-                            <option>10+ kishi (VIP zal)</option>
-                        </select>
-                    </div>
-                    <div class="full-width" style="text-align: center; margin-top: 10px;">
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Band qilish</button>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="aloqa">
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <div class="logo" style="color: white; margin-bottom: 20px;">CASHTAN<span>.</span></div>
-                    <p>Biz ta'mni va muhitni sevuvchilar uchun yaratilganmiz. Har bir tashrif siz uchun kutilmagan quvonch bo'ladi.</p>
+                    <div class="logo" style="color: var(--secondary-color);">SARDOR <span style="font-size:0.8rem; color:#fff; margin-left:5px;">Cafe</span></div>
+                    <p style="margin-top: 15px;">
+                        SARDOR Cafe - siz doim qaytmoqchi bo'ladigan joy.
+                    </p>
                 </div>
                 <div class="footer-col">
-                    <h3>Bog'lanish</h3>
-                    <p><i class="fas fa-map-marker-alt" style="color: var(--primary-color); width: 20px;"></i> Toshkent sh., Amir Temur ko'chasi, 15</p>
-                    <p><i class="fas fa-phone" style="color: var(--primary-color); width: 20px;"></i> +998 90 123 45 67</p>
-                    <p><i class="fas fa-envelope" style="color: var(--primary-color); width: 20px;"></i> info@cashtan.uz</p>
+                    <h3>Havolalar</h3>
+                    <ul>
+                        <li><a href="#bosh">Bosh sahifa</a></li>
+                        <li><a href="#menu">Menyu</a></li>
+                        <li><a href="#aloqa">Aloqa</a></li>
+                    </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Ish vaqti</h3>
-                    <p>Dushanba - Juma: 10:00 - 23:00</p>
-                    <p>Shanba - Yakshanba: 09:00 - 00:00</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Ijtimoiy Tarmoqlar</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
+                    <h3>Ish Vaqti</h3>
+                    <p>Dush - Yakshanba</p>
+                    <p>09:00 AM - 11:00 PM</p>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 CASHTAN Restorani. Barcha huquqlar himoyalangan.</p>
+                <p>&copy; 2023 SARDOR Cafe. Barcha huquqlar himoyalangan.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Simple JavaScript for Mobile Menu -->
     <script>
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        // Mobil menyu scripti
+        const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
 
-        mobileMenuBtn.addEventListener('click', () => {
+        hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             
-            // Toggle icon bars to times (X)
-            const icon = mobileMenuBtn.querySelector('i');
+            // Icon o'zgartirish
+            const icon = hamburger.querySelector('i');
             if (navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
@@ -803,13 +707,11 @@
             }
         });
 
-        // Close menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                hamburger.querySelector('i').classList.remove('fa-times');
+                hamburger.querySelector('i').classList.add('fa-bars');
             });
         });
     </script>
