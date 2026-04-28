@@ -1,719 +1,3790 @@
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SARDOR Cafe | Mehmondo'stlik Va Mehmonlar</title>
-    <meta name="description" content="SARDOR Cafe - Yunusobodda eng mazali taomlar va qulay muhit. Siz uchun ishlaymiz.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* --- CSS O'zgaruvchilari --- */
-        :root {
-            --primary-color: #d35400; /* Zaytun/Isriq rangi - Kafe uchun mos */
-            --secondary-color: #f1c40f; /* Oltin sariq */
-            --dark-bg: #2c3e50;
-            --light-bg: #fdfbf7; /* Issiq krem rang */
-            --text-color: #444;
-            --white: #ffffff;
-            --shadow: 0 4px 15px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
-        }
-
-        /* --- Umumiy Sozlamalar --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            color: var(--text-color);
-            line-height: 1.6;
-            background-color: var(--light-bg);
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: #2c3e50;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        /* --- Buttons --- */
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--primary-color);
-            color: var(--white);
-            border-radius: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #e67e22;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(211, 84, 0, 0.3);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--white);
-            color: var(--white);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--white);
-            color: var(--primary-color);
-        }
-
-        /* --- Header & Logo --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            z-index: 1000;
-            padding: 15px 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark-bg);
-            font-family: 'Playfair Display', serif;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
-
-        .logo span {
-            font-size: 1rem; /* 'Cafe' so'zi kichikroq */
-            color: var(--primary-color);
-            font-weight: 400;
-            text-transform: none;
-            letter-spacing: 3px;
-            margin-left: 5px;
-            display: inline-block;
-            transform: translateY(-5px); /* Biroz yuqoriga ko'tarish uchun */
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--dark-bg);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--dark-bg);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            /* Kafe uchun issiqroq fon rasmi */
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/seed/coffee_shop_vibes/1920/1080.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .hero-content .highlight {
-            color: var(--secondary-color);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* --- About Section --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-img {
-            position: relative;
-        }
-
-        .about-img img {
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            border: 8px solid var(--white);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: #777;
-            font-style: italic;
-        }
-
-        /* --- Menu Section --- */
-        .menu-section {
-            background-color: var(--white);
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .menu-item {
-            background: var(--light-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid #eee;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .menu-thumb {
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .menu-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .menu-item:hover .menu-thumb img {
-            transform: scale(1.05);
-        }
-
-        .menu-details {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .menu-header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-            gap: 15px;
-        }
-
-        .menu-header h3 {
-            font-size: 1.3rem;
-        }
-
-        .price {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.2rem;
-            background: rgba(211, 84, 0, 0.1);
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-
-        /* --- Features --- */
-        .features {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            background-image: linear-gradient(rgba(211, 84, 0, 0.9), rgba(211, 84, 0, 0.9)), url('https://www.transparenttextures.com/patterns/food.png');
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-box {
-            padding: 20px;
-        }
-
-        .feature-box i {
-            font-size: 3rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-
-        .feature-box h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-            color: var(--white);
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: #222;
-            color: #aaa;
-            padding: 60px 0 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h3 {
-            color: var(--white);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .footer-col p {
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        .footer-col i {
-            width: 25px;
-            color: var(--primary-color);
-        }
-
-        .social-links a {
-            display: inline-flex;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            margin-right: 10px;
-            color: var(--white);
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-
-        .copyright {
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
+    <!DOCTYPE html>
+    <html lang="uz">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SARDOR KAFE — Premium Restoran</title>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <style>
+            :root {
+                --gold: #D4A843;
+                --gold-light: #E8C96A;
+                --gold-dark: #B8922E;
+                --dark: #1A1A1A;
+                --darker: #111111;
+                --dark-card: #222222;
+                --dark-input: #2A2A2A;
+                --white: #FFFFFF;
+                --gray: #AAAAAA;
+                --light-gray: #F5F5F5;
+                --red: #E74C3C;
+                --green: #27AE60;
+                --blue: #3498DB;
+                --orange: #F39C12;
+                --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             }
-            
-            .logo {
-                font-size: 1.6rem;
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
-            
-            .nav-links {
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family: 'Poppins', sans-serif;
+                background: var(--darker);
+                color: var(--white);
+                overflow-x: hidden;
+            }
+
+            /* ===== PRELOADER ===== */
+            .preloader {
                 position: fixed;
-                top: 70px; /* Header balandligi */
-                right: -100%;
+                top: 0;
+                left: 0;
                 width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--white);
-                flex-direction: column;
-                justify-content: center;
+                height: 100%;
+                background: var(--darker);
+                display: flex;
                 align-items: center;
-                transition: 0.4s;
-                box-shadow: -5px 0 10px rgba(0,0,0,0.1);
+                justify-content: center;
+                z-index: 99999;
+                transition: opacity 0.8s ease, visibility 0.8s ease;
             }
 
-            .nav-links.active {
-                right: 0;
+            .preloader.hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .preloader-content {
+                text-align: center;
+            }
+
+            .preloader-logo {
+                font-family: 'Great Vibes', cursive;
+                font-size: 4rem;
+                color: var(--gold);
+                animation: pulse 1.5s ease-in-out infinite;
+            }
+
+            .preloader-bar {
+                width: 200px;
+                height: 3px;
+                background: var(--dark-card);
+                border-radius: 10px;
+                margin: 20px auto;
+                overflow: hidden;
+            }
+
+            .preloader-bar::after {
+                content: '';
+                display: block;
+                width: 50%;
+                height: 100%;
+                background: var(--gold);
+                border-radius: 10px;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            @keyframes loading {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(300%); }
+            }
+
+            @keyframes pulse {
+                0%, 100% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.7; transform: scale(1.05); }
+            }
+
+            /* ===== SCROLLBAR ===== */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: var(--darker);
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: var(--gold);
+                border-radius: 10px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--gold-light);
+            }
+
+            /* ===== NAVIGATION ===== */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 20px 60px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                z-index: 1000;
+                transition: var(--transition);
+            }
+
+            .navbar.scrolled {
+                background: rgba(17, 17, 17, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 12px 60px;
+                box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-logo {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none;
+            }
+
+            .nav-logo-icon {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.4rem;
+                color: var(--dark);
+                font-weight: 700;
+            }
+
+            .nav-logo-text {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: var(--white);
+            }
+
+            .nav-logo-text span {
+                color: var(--gold);
+            }
+
+            .nav-links {
+                display: flex;
+                list-style: none;
+                gap: 35px;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--white);
+                font-size: 0.9rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                position: relative;
+                transition: var(--transition);
+            }
+
+            .nav-links a::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--gold);
+                transition: var(--transition);
+            }
+
+            .nav-links a:hover {
+                color: var(--gold);
+            }
+
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+
+            .nav-actions {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .nav-btn {
+                padding: 10px 28px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                color: var(--dark);
+                border: none;
+                border-radius: 50px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.85rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .nav-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(212, 168, 67, 0.4);
+            }
+
+            .nav-admin-btn {
+                background: transparent;
+                border: 2px solid var(--gold);
+                color: var(--gold);
+                padding: 8px 22px;
+            }
+
+            .nav-admin-btn:hover {
+                background: var(--gold);
+                color: var(--dark);
             }
 
             .hamburger {
+                display: none;
+                flex-direction: column;
+                gap: 6px;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            .hamburger span {
+                width: 30px;
+                height: 2px;
+                background: var(--white);
+                transition: var(--transition);
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+
+            /* ===== HERO SECTION ===== */
+            .hero {
+                height: 100vh;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .hero-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #1a0a00 0%, #2d1810 50%, #1a0a00 100%);
+            }
+
+            .hero-bg::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900"><defs><radialGradient id="g" cx="50%" cy="50%"><stop offset="0%" stop-color="%23D4A843" stop-opacity="0.1"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><circle cx="720" cy="450" r="600" fill="url(%23g)"/></svg>');
+                background-size: cover;
+            }
+
+            .hero-particles {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .particle {
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: var(--gold);
+                border-radius: 50%;
+                opacity: 0.3;
+                animation: float 6s ease-in-out infinite;
+            }
+
+            .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+            .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; }
+            .particle:nth-child(3) { top: 30%; left: 80%; animation-delay: 2s; }
+            .particle:nth-child(4) { top: 70%; left: 70%; animation-delay: 3s; }
+            .particle:nth-child(5) { top: 40%; left: 50%; animation-delay: 4s; }
+            .particle:nth-child(6) { top: 80%; left: 40%; animation-delay: 5s; }
+            .particle:nth-child(7) { top: 15%; left: 60%; animation-delay: 1.5s; }
+            .particle:nth-child(8) { top: 55%; left: 90%; animation-delay: 2.5s; }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+                50% { transform: translateY(-30px) rotate(180deg); opacity: 0.8; }
+            }
+
+            .hero-content {
+                position: relative;
+                text-align: center;
+                z-index: 2;
+                max-width: 900px;
+                padding: 0 20px;
+            }
+
+            .hero-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 25px;
+                background: rgba(212, 168, 67, 0.15);
+                border: 1px solid rgba(212, 168, 67, 0.3);
+                border-radius: 50px;
+                font-size: 0.8rem;
+                color: var(--gold);
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                margin-bottom: 30px;
+                animation: fadeInDown 1s ease;
+            }
+
+            .hero-title {
+                font-family: 'Playfair Display', serif;
+                font-size: 5.5rem;
+                font-weight: 900;
+                line-height: 1.1;
+                margin-bottom: 10px;
+                animation: fadeInUp 1s ease 0.2s both;
+            }
+
+            .hero-title span {
+                color: var(--gold);
                 display: block;
+                font-family: 'Great Vibes', cursive;
+                font-size: 4rem;
+                font-weight: 400;
+            }
+
+            .hero-subtitle {
+                font-size: 1.15rem;
+                color: var(--gray);
+                margin-bottom: 40px;
+                line-height: 1.8;
+                font-weight: 300;
+                animation: fadeInUp 1s ease 0.4s both;
+            }
+
+            .hero-buttons {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+                animation: fadeInUp 1s ease 0.6s both;
+            }
+
+            .btn-primary {
+                padding: 16px 45px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                color: var(--dark);
+                border: none;
+                border-radius: 50px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: var(--transition);
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 40px rgba(212, 168, 67, 0.4);
+            }
+
+            .btn-secondary {
+                padding: 16px 45px;
+                background: transparent;
+                color: var(--white);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-radius: 50px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.95rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: var(--transition);
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .btn-secondary:hover {
+                border-color: var(--gold);
+                color: var(--gold);
+                transform: translateY(-3px);
+            }
+
+            .hero-scroll {
+                position: absolute;
+                bottom: 40px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                color: var(--gold);
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                animation: bounce 2s ease-in-out infinite;
+                cursor: pointer;
+            }
+
+            .hero-scroll i {
+                font-size: 1.2rem;
+            }
+
+            @keyframes bounce {
+                0%, 100% { transform: translateX(-50%) translateY(0); }
+                50% { transform: translateX(-50%) translateY(10px); }
+            }
+
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(40px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            @keyframes fadeInDown {
+                from { opacity: 0; transform: translateY(-40px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            /* ===== SECTION STYLES ===== */
+            .section {
+                padding: 100px 60px;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 70px;
+            }
+
+            .section-badge {
+                display: inline-block;
+                padding: 6px 20px;
+                background: rgba(212, 168, 67, 0.1);
+                border: 1px solid rgba(212, 168, 67, 0.2);
+                border-radius: 50px;
+                font-size: 0.75rem;
+                color: var(--gold);
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-family: 'Playfair Display', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .section-title span {
+                color: var(--gold);
+            }
+
+            .section-line {
+                width: 80px;
+                height: 3px;
+                background: linear-gradient(90deg, transparent, var(--gold), transparent);
+                margin: 0 auto 20px;
+            }
+
+            .section-desc {
+                color: var(--gray);
+                font-size: 1rem;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.8;
+            }
+
+            /* ===== ABOUT SECTION ===== */
+            .about {
+                background: var(--dark);
             }
 
             .about-grid {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+                align-items: center;
+            }
+
+            .about-image {
+                position: relative;
+                border-radius: 20px;
+                overflow: hidden;
+                height: 500px;
+            }
+
+            .about-image-bg {
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #2d1810, #1a0a00);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 8rem;
+            }
+
+            .about-image::after {
+                content: '';
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+                border: 2px solid var(--gold);
+                border-radius: 15px;
+                opacity: 0.3;
+            }
+
+            .about-experience {
+                position: absolute;
+                bottom: 30px;
+                right: 30px;
+                background: var(--gold);
+                color: var(--dark);
+                padding: 20px 30px;
+                border-radius: 15px;
                 text-align: center;
             }
-            
-            .about-img {
+
+            .about-experience h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 2.5rem;
+                font-weight: 900;
+            }
+
+            .about-experience p {
+                font-size: 0.85rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .about-text h2 {
+                font-family: 'Playfair Display', serif;
+                font-size: 2.8rem;
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
+
+            .about-text h2 span {
+                color: var(--gold);
+            }
+
+            .about-text p {
+                color: var(--gray);
+                line-height: 1.9;
                 margin-bottom: 30px;
             }
-        }
-    </style>
-</head>
-<body>
 
-    <!-- Navigatsiya -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">SARDOR <span>Cafe</span></div>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#bosh">Bosh sahifa</a></li>
-                    <li><a href="#haqida">Biz haqimizda</a></li>
-                    <li><a href="#menu">Menyu</a></li>
-                    <li><a href="#aloqa">Aloqa</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Bosh Sahifa (Hero) -->
-    <section id="bosh" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>SARDOR <span class="highlight">Cafe</span></h1>
-                <p>Har bir taom sevgi bilan tayyorlanadi. Bizda siz oilaviy muhit va mazali taomlarni topasiz.</p>
-                <a href="#aloqa" class="btn">Buyurtma berish</a>
-                <a href="#menu" class="btn btn-outline" style="margin-left: 10px;">Menyu</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Biz Haqimizda -->
-    <section id="haqida" class="section-padding">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-img">
-                    <img src="https://picsum.photos/seed/cafe_interior_warm/600/400.jpg" alt="Kafe ichki ko'rinishi">
-                </div>
-                <div class="about-text">
-                    <div class="section-title" style="text-align: left;">
-                        <span>Bizning Hikoyamiz</span>
-                        <h2>Sardor Cafe Haqida</h2>
-                    </div>
-                    <p style="margin: 20px 0;">
-                        "Sardor" shunchaki nom emas, balki sifat va mehmondo'stlik belgisidir. Bizning kafemizda Sardor har doim mehmonlarni kutib olishga tayyor.
-                    </p>
-                    <p style="margin-bottom: 20px;">
-                        Bizda har bir kichik narsa e'tiborga olingan: Arzon narxlar, toza mahsulotlar va oilaviy muhit. Do'stlaringiz bilan keling, sho'x suhbatlar va mazli taomlardan bahramand bo'ling.
-                    </p>
-                    <ul style="margin-top: 20px;">
-                        <li style="margin-bottom: 10px;"><i class="fas fa-heart" style="color: var(--primary-color); margin-right: 10px;"></i> Halol mahsulotlar</li>
-                        <li style="margin-bottom: 10px;"><i class="fas fa-heart" style="color: var(--primary-color); margin-right: 10px;"></i> Tezkor xizmat</li>
-                        <li style="margin-bottom: 10px;"><i class="fas fa-heart" style="color: var(--primary-color); margin-right: 10px;"></i> Bolalar uchun joy</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Xizmatlar / Imkoniyatlar -->
-    <section class="section-padding features">
-        <div class="container">
-            <div class="section-title">
-                <span style="color: rgba(255,255,255,0.8);">Nima uchun biz?</span>
-                <h2 style="color: white;">Bizning Afzalliklarimiz</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-box">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Mazali Taomlar</h3>
-                    <p>Uy sharoitidagi taomlar va milliy ta'mlar.</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-coffee"></i>
-                    <h3>Issiq Ichimliklar</h3>
-                    <p>Sovuq kunda issiq qahva va choylar tayyorlaymiz.</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-wifi"></i>
-                    <h3>Bepul Wi-Fi</h3>
-                    <p>Ish yoki o'qish uchun qulay joy va internet.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Menyu -->
-    <section id="menu" class="section-padding menu-section">
-        <div class="container">
-            <div class="section-title">
-                <span>Tanlov qiling</span>
-                <h2>Kafe Menyusi</h2>
-            </div>
-            
-            <div class="menu-grid">
-                <!-- Taom 1 -->
-                <div class="menu-item">
-                    <div class="menu-thumb">
-                        <img src="https://picsum.photos/seed/lagman_noodle/400/300.jpg" alt="Lag'mon">
-                    </div>
-                    <div class="menu-details">
-                        <div class="menu-header">
-                            <h3>Lag'mon</h3>
-                            <span class="price">30,000 so'm</span>
-                        </div>
-                        <p>Qo'l yasova, boy sous va yangi ko'katlar.</p>
-                    </div>
-                </div>
-
-                <!-- Taom 2 -->
-                <div class="menu-item">
-                    <div class="menu-thumb">
-                        <img src="https://picsum.photos/seed/doner_kebab/400/300.jpg" alt="Doner">
-                    </div>
-                    <div class="menu-details">
-                        <div class="menu-header">
-                            <h3>Goshtli Doner</h3>
-                            <span class="price">28,000 so'm</span>
-                        </div>
-                        <p>To'g'ralgan non va sabzavotlar bilan doner.</p>
-                    </div>
-                </div>
-
-                <!-- Taom 3 -->
-                <div class="menu-item">
-                    <div class="menu-thumb">
-                        <img src="https://picsum.photos/seed/hamburger/400/300.jpg" alt="Burger">
-                    </div>
-                    <div class="menu-details">
-                        <div class="menu-header">
-                            <h3>Sardor Burger</h3>
-                            <span class="price">35,000 so'm</span>
-                        </div>
-                        <p>Natural go'sht, pishloq va maxsus sous.</p>
-                    </div>
-                </div>
-
-                <!-- Taom 4 -->
-                <div class="menu-item">
-                    <div class="menu-thumb">
-                        <img src="https://picsum.photos/seed/pizza_slice/400/300.jpg" alt="Pizza">
-                    </div>
-                    <div class="menu-details">
-                        <div class="menu-header">
-                            <h3>Pizza</h3>
-                            <span class="price">45,000 so'm</span>
-                        </div>
-                        <p>Italiya uslubidagi, mol yoki qo'zi go'shti bilan.</p>
-                    </div>
-                </div>
-
-                <!-- Taom 5 -->
-                <div class="menu-item">
-                    <div class="menu-thumb">
-                        <img src="https://picsum.photos/seed/coffee_cup/400/300.jpg" alt="Cappuccino">
-                    </div>
-                    <div class="menu-details">
-                        <div class="menu-header">
-                            <h3>Cappuccino</h3>
-                            <span class="price">18,000 so'm</span>
-                        </div>
-                        <p>Haqiqiy arabica qahvasi va sutdan tayyorlangan.</p>
-                    </div>
-                </div>
-
-                <!-- Taom 6 -->
-                <div class="menu-item">
-                    <div class="menu-thumb">
-                        <img src="https://picsum.photos/seed/cake_slice/400/300.jpg" alt="Tort">
-                    </div>
-                    <div class="menu-details">
-                        <div class="menu-header">
-                            <h3>Moyqaymoq Tort</h3>
-                            <span class="price">15,000 so'm</span>
-                        </div>
-                        <p>Taomdan keyin tatlik uchun mazali tort.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Xarita va Aloqa -->
-    <section id="aloqa" style="background-color: var(--light-bg);">
-        <div class="container section-padding">
-            <div class="section-title">
-                <span>Biz Toping</span>
-                <h2>Aloqa</h2>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div class="contact-info" style="padding: 30px; background: white; border-radius: 10px; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">Bog'lanish</h3>
-                    <p style="margin-bottom: 15px;"><i class="fas fa-map-marker-alt"></i> <strong>Manzil:</strong> Toshkent, Yunusobod tumani, Amir Temur shoh ko'chasi</p>
-                    <p style="margin-bottom: 15px;"><i class="fas fa-phone"></i> <strong>Telefon:</strong> +998 90 123 45 67</p>
-                    <p style="margin-bottom: 20px;"><i class="fas fa-clock"></i> <strong>Ish vaqti:</strong> 09:00 - 23:00</p>
-                    
-                    <h4 style="margin-bottom: 10px;">Ijtimoiy Tarmoqlar:</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
-
-                <div class="map-wrapper" style="height: 350px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow);">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.5!2d69.2!3d41.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDIxJzAwLjAiTiA2OcKwMTInMDAuMCJF!5e0!3m2!1sen!2suz!4v1600000000000!5m2!1sen!2suz" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="logo" style="color: var(--secondary-color);">SARDOR <span style="font-size:0.8rem; color:#fff; margin-left:5px;">Cafe</span></div>
-                    <p style="margin-top: 15px;">
-                        SARDOR Cafe - siz doim qaytmoqchi bo'ladigan joy.
-                    </p>
-                </div>
-                <div class="footer-col">
-                    <h3>Havolalar</h3>
-                    <ul>
-                        <li><a href="#bosh">Bosh sahifa</a></li>
-                        <li><a href="#menu">Menyu</a></li>
-                        <li><a href="#aloqa">Aloqa</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Ish Vaqti</h3>
-                    <p>Dush - Yakshanba</p>
-                    <p>09:00 AM - 11:00 PM</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 SARDOR Cafe. Barcha huquqlar himoyalangan.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobil menyu scripti
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Icon o'zgartirish
-            const icon = hamburger.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+            .about-features {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                margin-bottom: 40px;
             }
-        });
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.querySelector('i').classList.remove('fa-times');
-                hamburger.querySelector('i').classList.add('fa-bars');
+            .about-feature {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 15px;
+                background: var(--dark-card);
+                border-radius: 12px;
+            }
+
+            .about-feature i {
+                color: var(--gold);
+                font-size: 1.2rem;
+            }
+
+            .about-feature span {
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            /* ===== STATS ===== */
+            .stats {
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                padding: 60px;
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 40px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .stat-item {
+                text-align: center;
+            }
+
+            .stat-number {
+                font-family: 'Playfair Display', serif;
+                font-size: 3.5rem;
+                font-weight: 900;
+                color: var(--dark);
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+                color: rgba(0, 0, 0, 0.6);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: 600;
+            }
+
+            /* ===== MENU SECTION ===== */
+            .menu {
+                background: var(--darker);
+            }
+
+            .menu-categories {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 50px;
+                flex-wrap: wrap;
+            }
+
+            .menu-cat-btn {
+                padding: 10px 30px;
+                background: var(--dark-card);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 50px;
+                color: var(--white);
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.85rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .menu-cat-btn.active,
+            .menu-cat-btn:hover {
+                background: var(--gold);
+                color: var(--dark);
+                border-color: var(--gold);
+            }
+
+            .menu-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+
+            .menu-card {
+                background: var(--dark-card);
+                border-radius: 20px;
+                overflow: hidden;
+                transition: var(--transition);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .menu-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+                border-color: rgba(212, 168, 67, 0.3);
+            }
+
+            .menu-card-image {
+                height: 220px;
+                background: linear-gradient(135deg, #2d1810, #1a0a00);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 4rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .menu-card-badge {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                padding: 5px 15px;
+                background: var(--red);
+                color: white;
+                border-radius: 50px;
+                font-size: 0.75rem;
+                font-weight: 600;
+            }
+
+            .menu-card-body {
+                padding: 25px;
+            }
+
+            .menu-card-title {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.4rem;
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+
+            .menu-card-desc {
+                color: var(--gray);
+                font-size: 0.85rem;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+
+            .menu-card-footer {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .menu-card-price {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: var(--gold);
+            }
+
+            .menu-card-price small {
+                font-size: 0.8rem;
+                color: var(--gray);
+                font-family: 'Poppins', sans-serif;
+                font-weight: 400;
+            }
+
+            .menu-card-btn {
+                width: 45px;
+                height: 45px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                border: none;
+                border-radius: 50%;
+                color: var(--dark);
+                font-size: 1.1rem;
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .menu-card-btn:hover {
+                transform: scale(1.1);
+                box-shadow: 0 5px 20px rgba(212, 168, 67, 0.4);
+            }
+
+            /* ===== SPECIALS ===== */
+            .specials {
+                background: var(--dark);
+            }
+
+            .specials-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .special-card {
+                background: linear-gradient(135deg, rgba(212, 168, 67, 0.1), rgba(212, 168, 67, 0.02));
+                border: 1px solid rgba(212, 168, 67, 0.2);
+                border-radius: 20px;
+                padding: 40px;
+                display: flex;
+                gap: 30px;
+                align-items: center;
+                transition: var(--transition);
+            }
+
+            .special-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--gold);
+            }
+
+            .special-icon {
+                width: 80px;
+                height: 80px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                flex-shrink: 0;
+            }
+
+            .special-text h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.4rem;
+                margin-bottom: 8px;
+            }
+
+            .special-text p {
+                color: var(--gray);
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            /* ===== RESERVATION ===== */
+            .reservation {
+                background: var(--darker);
+                position: relative;
+            }
+
+            .reservation-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: var(--dark-card);
+                border-radius: 25px;
+                padding: 50px;
+                border: 1px solid rgba(212, 168, 67, 0.2);
+            }
+
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .form-group label {
+                font-size: 0.85rem;
+                font-weight: 500;
+                color: var(--gold);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 14px 20px;
+                background: var(--dark-input);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                color: var(--white);
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.95rem;
+                transition: var(--transition);
+                outline: none;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                border-color: var(--gold);
+                box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.1);
+            }
+
+            .form-group textarea {
+                resize: vertical;
+                min-height: 120px;
+            }
+
+            .form-full {
+                grid-column: 1 / -1;
+            }
+
+            .form-submit {
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            .form-submit .btn-primary {
+                padding: 16px 60px;
+            }
+
+            /* ===== GALLERY ===== */
+            .gallery {
+                background: var(--dark);
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 250px);
+                gap: 20px;
+            }
+
+            .gallery-item {
+                border-radius: 15px;
+                overflow: hidden;
+                position: relative;
+                cursor: pointer;
+                background: linear-gradient(135deg, #2d1810, #1a0a00);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+                transition: var(--transition);
+            }
+
+            .gallery-item:hover {
+                transform: scale(1.02);
+            }
+
+            .gallery-item:hover .gallery-overlay {
+                opacity: 1;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+            }
+
+            .gallery-item:nth-child(4) {
+                grid-row: span 2;
+            }
+
+            .gallery-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(212, 168, 67, 0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: var(--transition);
+            }
+
+            .gallery-overlay i {
+                font-size: 2rem;
+                color: var(--white);
+            }
+
+            /* ===== TESTIMONIALS ===== */
+            .testimonials {
+                background: var(--darker);
+            }
+
+            .testimonials-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+
+            .testimonial-card {
+                background: var(--dark-card);
+                border-radius: 20px;
+                padding: 35px;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                transition: var(--transition);
+            }
+
+            .testimonial-card:hover {
+                border-color: rgba(212, 168, 67, 0.3);
+                transform: translateY(-5px);
+            }
+
+            .testimonial-stars {
+                color: var(--gold);
+                margin-bottom: 20px;
+                font-size: 0.9rem;
+            }
+
+            .testimonial-text {
+                color: var(--gray);
+                font-size: 0.95rem;
+                line-height: 1.8;
+                margin-bottom: 25px;
+                font-style: italic;
+            }
+
+            .testimonial-author {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .testimonial-avatar {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                color: var(--dark);
+                font-weight: 700;
+            }
+
+            .testimonial-name {
+                font-weight: 600;
+                font-size: 1rem;
+            }
+
+            .testimonial-role {
+                color: var(--gray);
+                font-size: 0.8rem;
+            }
+
+            /* ===== CHEFS ===== */
+            .chefs {
+                background: var(--dark);
+            }
+
+            .chefs-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 30px;
+            }
+
+            .chef-card {
+                text-align: center;
+                background: var(--dark-card);
+                border-radius: 20px;
+                padding: 30px;
+                transition: var(--transition);
+            }
+
+            .chef-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .chef-avatar {
+                width: 120px;
+                height: 120px;
+                background: linear-gradient(135deg, #2d1810, #1a0a00);
+                border-radius: 50%;
+                margin: 0 auto 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+                border: 3px solid var(--gold);
+            }
+
+            .chef-name {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.3rem;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+
+            .chef-role {
+                color: var(--gold);
+                font-size: 0.85rem;
+                font-weight: 500;
+                margin-bottom: 15px;
+            }
+
+            .chef-social {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .chef-social a {
+                width: 35px;
+                height: 35px;
+                background: var(--dark-input);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--gray);
+                text-decoration: none;
+                transition: var(--transition);
+                font-size: 0.85rem;
+            }
+
+            .chef-social a:hover {
+                background: var(--gold);
+                color: var(--dark);
+            }
+
+            /* ===== CONTACT ===== */
+            .contact {
+                background: var(--darker);
+            }
+
+            .contact-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .contact-item {
+                display: flex;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .contact-icon {
+                width: 55px;
+                height: 55px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                color: var(--dark);
+                flex-shrink: 0;
+            }
+
+            .contact-text h4 {
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+
+            .contact-text p {
+                color: var(--gray);
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 16px 20px;
+                background: var(--dark-card);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                color: var(--white);
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.95rem;
+                outline: none;
+                transition: var(--transition);
+            }
+
+            .contact-form input:focus,
+            .contact-form textarea:focus {
+                border-color: var(--gold);
+            }
+
+            .contact-form textarea {
+                resize: vertical;
+                min-height: 150px;
+            }
+
+            /* ===== FOOTER ===== */
+            .footer {
+                background: var(--dark);
+                padding: 80px 60px 30px;
+            }
+
+            .footer-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                gap: 50px;
+                margin-bottom: 60px;
+            }
+
+            .footer-brand h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .footer-brand h3 span {
+                color: var(--gold);
+            }
+
+            .footer-brand p {
+                color: var(--gray);
+                line-height: 1.8;
+                margin-bottom: 20px;
+            }
+
+            .footer-social {
+                display: flex;
+                gap: 12px;
+            }
+
+            .footer-social a {
+                width: 42px;
+                height: 42px;
+                background: var(--dark-card);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--white);
+                text-decoration: none;
+                transition: var(--transition);
+            }
+
+            .footer-social a:hover {
+                background: var(--gold);
+                color: var(--dark);
+                transform: translateY(-3px);
+            }
+
+            .footer-col h4 {
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+                color: var(--gold);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .footer-col ul {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .footer-col ul a {
+                color: var(--gray);
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: var(--transition);
+            }
+
+            .footer-col ul a:hover {
+                color: var(--gold);
+                padding-left: 5px;
+            }
+
+            .footer-bottom {
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .footer-bottom p {
+                color: var(--gray);
+                font-size: 0.85rem;
+            }
+
+            .footer-bottom p span {
+                color: var(--gold);
+            }
+
+            /* ===== CART SIDEBAR ===== */
+            .cart-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 2000;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .cart-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .cart-sidebar {
+                position: fixed;
+                top: 0;
+                right: -450px;
+                width: 420px;
+                height: 100%;
+                background: var(--dark);
+                z-index: 2001;
+                transition: var(--transition);
+                display: flex;
+                flex-direction: column;
+            }
+
+            .cart-sidebar.active {
+                right: 0;
+            }
+
+            .cart-header {
+                padding: 25px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .cart-header h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+            }
+
+            .cart-close {
+                width: 40px;
+                height: 40px;
+                background: var(--dark-card);
+                border: none;
+                border-radius: 50%;
+                color: var(--white);
+                font-size: 1.2rem;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .cart-close:hover {
+                background: var(--red);
+            }
+
+            .cart-items {
+                flex: 1;
+                overflow-y: auto;
+                padding: 20px;
+            }
+
+            .cart-item {
+                display: flex;
+                gap: 15px;
+                padding: 15px;
+                background: var(--dark-card);
+                border-radius: 12px;
+                margin-bottom: 15px;
+                align-items: center;
+            }
+
+            .cart-item-icon {
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #2d1810, #1a0a00);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                flex-shrink: 0;
+            }
+
+            .cart-item-info {
+                flex: 1;
+            }
+
+            .cart-item-name {
+                font-weight: 600;
+                font-size: 0.95rem;
+                margin-bottom: 5px;
+            }
+
+            .cart-item-price {
+                color: var(--gold);
+                font-weight: 700;
+            }
+
+            .cart-item-qty {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 8px;
+            }
+
+            .cart-item-qty button {
+                width: 28px;
+                height: 28px;
+                background: var(--dark-input);
+                border: none;
+                border-radius: 6px;
+                color: var(--white);
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: var(--transition);
+            }
+
+            .cart-item-qty button:hover {
+                background: var(--gold);
+                color: var(--dark);
+            }
+
+            .cart-item-qty span {
+                font-weight: 600;
+                min-width: 20px;
+                text-align: center;
+            }
+
+            .cart-item-remove {
+                background: none;
+                border: none;
+                color: var(--red);
+                cursor: pointer;
+                font-size: 1rem;
+                transition: var(--transition);
+            }
+
+            .cart-item-remove:hover {
+                transform: scale(1.2);
+            }
+
+            .cart-empty {
+                text-align: center;
+                padding: 60px 20px;
+                color: var(--gray);
+            }
+
+            .cart-empty i {
+                font-size: 4rem;
+                color: var(--gold);
+                margin-bottom: 20px;
+            }
+
+            .cart-footer {
+                padding: 25px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .cart-total {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .cart-total span:first-child {
+                font-size: 1.1rem;
+                font-weight: 600;
+            }
+
+            .cart-total span:last-child {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.8rem;
+                color: var(--gold);
+                font-weight: 700;
+            }
+
+            .cart-checkout {
+                width: 100%;
+                padding: 16px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                color: var(--dark);
+                border: none;
+                border-radius: 12px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 1rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .cart-checkout:hover {
+                box-shadow: 0 10px 30px rgba(212, 168, 67, 0.4);
+            }
+
+            /* ===== CART ICON ===== */
+            .cart-icon {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .cart-icon i {
+                font-size: 1.3rem;
+                color: var(--white);
+                transition: var(--transition);
+            }
+
+            .cart-icon:hover i {
+                color: var(--gold);
+            }
+
+            .cart-count {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                width: 20px;
+                height: 20px;
+                background: var(--red);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.7rem;
+                font-weight: 700;
+                color: white;
+            }
+
+            /* ===== ADMIN PANEL ===== */
+            .admin-panel {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 5000;
+                background: var(--darker);
+            }
+
+            .admin-panel.active {
+                display: flex;
+            }
+
+            .admin-sidebar {
+                width: 280px;
+                background: var(--dark);
+                padding: 30px 0;
+                overflow-y: auto;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .admin-logo {
+                padding: 0 25px 30px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                margin-bottom: 20px;
+            }
+
+            .admin-logo h2 {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+            }
+
+            .admin-logo h2 span {
+                color: var(--gold);
+            }
+
+            .admin-logo p {
+                color: var(--gray);
+                font-size: 0.8rem;
+                margin-top: 5px;
+            }
+
+            .admin-nav {
+                list-style: none;
+                padding: 0 15px;
+            }
+
+            .admin-nav li {
+                margin-bottom: 5px;
+            }
+
+            .admin-nav a {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 15px;
+                color: var(--gray);
+                text-decoration: none;
+                border-radius: 10px;
+                transition: var(--transition);
+                font-size: 0.9rem;
+            }
+
+            .admin-nav a:hover,
+            .admin-nav a.active {
+                background: rgba(212, 168, 67, 0.1);
+                color: var(--gold);
+            }
+
+            .admin-nav a i {
+                width: 20px;
+                text-align: center;
+            }
+
+            .admin-content {
+                flex: 1;
+                overflow-y: auto;
+            }
+
+            .admin-header {
+                padding: 20px 30px;
+                background: var(--dark);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .admin-header h1 {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+            }
+
+            .admin-header-right {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .admin-user {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .admin-user-avatar {
+                width: 40px;
+                height: 40px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--dark);
+                font-weight: 700;
+            }
+
+            .admin-close {
+                width: 40px;
+                height: 40px;
+                background: var(--dark-card);
+                border: none;
+                border-radius: 10px;
+                color: var(--white);
+                font-size: 1.2rem;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .admin-close:hover {
+                background: var(--red);
+            }
+
+            .admin-body {
+                padding: 30px;
+            }
+
+            .admin-stats {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            .admin-stat-card {
+                background: var(--dark-card);
+                border-radius: 15px;
+                padding: 25px;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .admin-stat-card .icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+
+            .admin-stat-card .icon.gold {
+                background: rgba(212, 168, 67, 0.15);
+                color: var(--gold);
+            }
+
+            .admin-stat-card .icon.green {
+                background: rgba(39, 174, 96, 0.15);
+                color: var(--green);
+            }
+
+            .admin-stat-card .icon.blue {
+                background: rgba(52, 152, 219, 0.15);
+                color: var(--blue);
+            }
+
+            .admin-stat-card .icon.red {
+                background: rgba(231, 76, 60, 0.15);
+                color: var(--red);
+            }
+
+            .admin-stat-card h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 2rem;
+                margin-bottom: 5px;
+            }
+
+            .admin-stat-card p {
+                color: var(--gray);
+                font-size: 0.85rem;
+            }
+
+            .admin-table-container {
+                background: var(--dark-card);
+                border-radius: 15px;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .admin-table-header {
+                padding: 20px 25px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .admin-table-header h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.3rem;
+            }
+
+            .admin-table-btn {
+                padding: 8px 20px;
+                background: var(--gold);
+                color: var(--dark);
+                border: none;
+                border-radius: 8px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.85rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .admin-table-btn:hover {
+                box-shadow: 0 5px 15px rgba(212, 168, 67, 0.3);
+            }
+
+            .admin-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .admin-table th {
+                padding: 15px 25px;
+                text-align: left;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: var(--gray);
+                background: rgba(0, 0, 0, 0.2);
+                font-weight: 600;
+            }
+
+            .admin-table td {
+                padding: 15px 25px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                font-size: 0.9rem;
+            }
+
+            .admin-table tr:hover td {
+                background: rgba(212, 168, 67, 0.05);
+            }
+
+            .status-badge {
+                padding: 4px 12px;
+                border-radius: 50px;
+                font-size: 0.75rem;
+                font-weight: 600;
+            }
+
+            .status-badge.active {
+                background: rgba(39, 174, 96, 0.15);
+                color: var(--green);
+            }
+
+            .status-badge.pending {
+                background: rgba(243, 156, 18, 0.15);
+                color: var(--orange);
+            }
+
+            .status-badge.completed {
+                background: rgba(52, 152, 219, 0.15);
+                color: var(--blue);
+            }
+
+            .status-badge.cancelled {
+                background: rgba(231, 76, 60, 0.15);
+                color: var(--red);
+            }
+
+            .action-btns {
+                display: flex;
+                gap: 8px;
+            }
+
+            .action-btn {
+                width: 32px;
+                height: 32px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 0.8rem;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .action-btn.edit {
+                background: rgba(52, 152, 219, 0.15);
+                color: var(--blue);
+            }
+
+            .action-btn.delete {
+                background: rgba(231, 76, 60, 0.15);
+                color: var(--red);
+            }
+
+            .action-btn:hover {
+                transform: scale(1.1);
+            }
+
+            /* ===== ADMIN TABS ===== */
+            .admin-tab {
+                display: none;
+            }
+
+            .admin-tab.active {
+                display: block;
+            }
+
+            /* ===== MODAL ===== */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 6000;
+                display: none;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal-overlay.active {
+                display: flex;
+            }
+
+            .modal {
+                background: var(--dark);
+                border-radius: 20px;
+                padding: 40px;
+                width: 500px;
+                max-width: 90%;
+                border: 1px solid rgba(212, 168, 67, 0.2);
+            }
+
+            .modal h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+                margin-bottom: 25px;
+            }
+
+            .modal .form-group {
+                margin-bottom: 15px;
+            }
+
+            .modal-actions {
+                display: flex;
+                gap: 15px;
+                margin-top: 25px;
+            }
+
+            .modal-actions button {
+                flex: 1;
+                padding: 12px;
+                border-radius: 10px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .modal-actions .btn-save {
+                background: var(--gold);
+                color: var(--dark);
+                border: none;
+            }
+
+            .modal-actions .btn-cancel {
+                background: transparent;
+                color: var(--white);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            /* ===== NOTIFICATION ===== */
+            .notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                background: var(--dark-card);
+                border-radius: 12px;
+                border-left: 4px solid var(--green);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                transform: translateX(120%);
+                transition: var(--transition);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .notification.show {
+                transform: translateX(0);
+            }
+
+            .notification i {
+                color: var(--green);
+                font-size: 1.2rem;
+            }
+
+            /* ===== BACK TO TOP ===== */
+            .back-to-top {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                background: var(--gold);
+                border: none;
+                border-radius: 50%;
+                color: var(--dark);
+                font-size: 1.2rem;
+                cursor: pointer;
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                box-shadow: 0 5px 20px rgba(212, 168, 67, 0.4);
+            }
+
+            .back-to-top.visible {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .back-to-top:hover {
+                transform: translateY(-5px);
+            }
+
+            /* ===== RESPONSIVE ===== */
+            @media (max-width: 1024px) {
+                .section {
+                    padding: 80px 40px;
+                }
+
+                .navbar {
+                    padding: 15px 30px;
+                }
+
+                .navbar.scrolled {
+                    padding: 10px 30px;
+                }
+
+                .hero-title {
+                    font-size: 3.5rem;
+                }
+
+                .hero-title span {
+                    font-size: 2.5rem;
+                }
+
+                .menu-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .chefs-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .gallery-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .admin-stats {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .footer-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .nav-links {
+                    display: none;
+                }
+
+                .hamburger {
+                    display: flex;
+                }
+
+                .nav-links.mobile-active {
+                    display: flex;
+                    flex-direction: column;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100vh;
+                    background: var(--darker);
+                    align-items: center;
+                    justify-content: center;
+                    gap: 30px;
+                    z-index: 1000;
+                }
+
+                .nav-links.mobile-active a {
+                    font-size: 1.3rem;
+                }
+
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+
+                .hero-title span {
+                    font-size: 2rem;
+                }
+
+                .about-grid,
+                .contact-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .menu-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .specials-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .testimonials-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .stats-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .form-row {
+                    grid-template-columns: 1fr;
+                }
+
+                .section {
+                    padding: 60px 20px;
+                }
+
+                .footer-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .footer-bottom {
+                    flex-direction: column;
+                    gap: 10px;
+                    text-align: center;
+                }
+
+                .cart-sidebar {
+                    width: 100%;
+                    right: -100%;
+                }
+
+                .admin-sidebar {
+                    width: 100%;
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    height: auto;
+                    z-index: 10;
+                    display: flex;
+                    overflow-x: auto;
+                    padding: 10px;
+                }
+
+                .admin-logo {
+                    display: none;
+                }
+
+                .admin-nav {
+                    display: flex;
+                    gap: 10px;
+                    padding: 0;
+                }
+
+                .admin-nav a {
+                    white-space: nowrap;
+                    padding: 8px 15px;
+                    font-size: 0.8rem;
+                }
+
+                .admin-stats {
+                    grid-template-columns: 1fr;
+                }
+
+                .admin-table {
+                    font-size: 0.8rem;
+                }
+
+                .admin-table th,
+                .admin-table td {
+                    padding: 10px 15px;
+                }
+
+                .gallery-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .gallery-item:nth-child(1) {
+                    grid-column: span 1;
+                }
+
+                .gallery-item:nth-child(4) {
+                    grid-row: span 1;
+                }
+
+                .chefs-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* ===== ANIMATIONS ===== */
+            .fade-in {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* ===== LOGIN MODAL ===== */
+            .login-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 7000;
+                display: none;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .login-modal.active {
+                display: flex;
+            }
+
+            .login-box {
+                background: var(--dark);
+                border-radius: 25px;
+                padding: 50px;
+                width: 420px;
+                max-width: 90%;
+                border: 1px solid rgba(212, 168, 67, 0.3);
+                text-align: center;
+            }
+
+            .login-box h2 {
+                font-family: 'Playfair Display', serif;
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .login-box h2 span {
+                color: var(--gold);
+            }
+
+            .login-box p {
+                color: var(--gray);
+                margin-bottom: 30px;
+            }
+
+            .login-box .form-group {
+                text-align: left;
+                margin-bottom: 20px;
+            }
+
+            .login-box .form-group input {
+                width: 100%;
+                padding: 14px 20px;
+                background: var(--dark-card);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                color: var(--white);
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.95rem;
+                outline: none;
+                transition: var(--transition);
+            }
+
+            .login-box .form-group input:focus {
+                border-color: var(--gold);
+            }
+
+            .login-btn {
+                width: 100%;
+                padding: 14px;
+                background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+                color: var(--dark);
+                border: none;
+                border-radius: 12px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 1rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: var(--transition);
+                margin-top: 10px;
+            }
+
+            .login-btn:hover {
+                box-shadow: 0 10px 30px rgba(212, 168, 67, 0.4);
+            }
+
+            .login-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                background: var(--dark-card);
+                border: none;
+                border-radius: 50%;
+                color: var(--white);
+                font-size: 1.2rem;
+                cursor: pointer;
+            }
+
+            .login-error {
+                color: var(--red);
+                font-size: 0.85rem;
+                margin-top: 10px;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- PRELOADER -->
+        <div class="preloader" id="preloader">
+            <div class="preloader-content">
+                <div class="preloader-logo">Sardor Kafe</div>
+                <div class="preloader-bar"></div>
+            </div>
+        </div>
+
+        <!-- NOTIFICATION -->
+        <div class="notification" id="notification">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-text">Muvaffaqiyatli amalga oshirildi!</span>
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="navbar" id="navbar">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">S</div>
+                <div class="nav-logo-text">SARDOR <span>KAFE</span></div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Bosh sahifa</a></li>
+                <li><a href="#about">Biz haqimizda</a></li>
+                <li><a href="#menu">Menyu</a></li>
+                <li><a href="#gallery">Galereya</a></li>
+                <li><a href="#chefs">Oshpazlar</a></li>
+                <li><a href="#reservation">Band qilish</a></li>
+                <li><a href="#contact">Aloqa</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <button class="nav-btn nav-admin-btn" onclick="showLogin()">
+                    <i class="fas fa-lock"></i> Admin
+                </button>
+                <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="hero-bg">
+                <div class="hero-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i> Premium Taomlar — 2024
+                </div>
+                <h1 class="hero-title">
+                    SARDOR
+                    <span>Kafe & Restoran</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Eng sara taomlar, nozik atmosfer va unutilmas lahzalar.<br>
+                    Har bir taom — san'at asari, har bir tashrif — bayram.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn-primary">
+                        <i class="fas fa-utensils"></i> Menyuni Ko'rish
+                    </a>
+                    <a href="#reservation" class="btn-secondary">
+                        <i class="fas fa-calendar-alt"></i> Joy Band Qilish
+                    </a>
+                </div>
+            </div>
+            <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+                <span>Pastga suring</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="section about" id="about">
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <div class="about-image-bg">🍽️</div>
+                    <div class="about-experience">
+                        <h3>15+</h3>
+                        <p>Yillik Tajriba</p>
+                    </div>
+                </div>
+                <div class="about-text fade-in">
+                    <div class="section-badge">Biz Haqimizda</div>
+                    <h2>Eng <span>Mazali</span> Taomlar <br>Faqat Bizda!</h2>
+                    <p>
+                        Sardor Kafe — bu shunchaki restoran emas, bu oilaviy muhit, bu ta'mlar olami. 
+                        Biz 2009-yildan beri mehmonlarimizga eng sara taomlarni taqdim etib kelmoqdamiz. 
+                        Har bir taomimiz yangi va sifatli mahsulotlardan tayyorlanadi.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Yangi mahsulotlar</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional oshpazlar</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tez yetkazib berish</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Qulay narxlar</span>
+                        </div>
+                    </div>
+                    <a href="#menu" class="btn-primary">
+                        <i class="fas fa-arrow-right"></i> Batafsil
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="stats">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-target="15000">0</div>
+                    <div class="stat-label">Mamnun Mijozlar</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-target="120">0</div>
+                    <div class="stat-label">Taomlar Soni</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Professional Oshpazlar</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Yillik Tajriba</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MENU SECTION -->
+        <section class="section menu" id="menu">
+            <div class="section-header">
+                <div class="section-badge">Bizning Menyu</div>
+                <h2 class="section-title">Sara <span>Taomlar</span></h2>
+                <div class="section-line"></div>
+                <p class="section-desc">Eng sara va mazali taomlarimiz bilan tanishing</p>
+            </div>
+            <div class="menu-categories">
+                <button class="menu-cat-btn active" onclick="filterMenu('all')">Barchasi</button>
+                <button class="menu-cat-btn" onclick="filterMenu('main')">Asosiy</button>
+                <button class="menu-cat-btn" onclick="filterMenu('soup')">Sho'rvalar</button>
+                <button class="menu-cat-btn" onclick="filterMenu('salad')">Salatlar</button>
+                <button class="menu-cat-btn" onclick="filterMenu('drink')">Ichimliklar</button>
+                <button class="menu-cat-btn" onclick="filterMenu('dessert')">Desertlar</button>
+            </div>
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be loaded by JS -->
+            </div>
+        </section>
+
+        <!-- SPECIALS -->
+        <section class="section specials">
+            <div class="section-header">
+                <div class="section-badge">Maxsus Takliflar</div>
+                <h2 class="section-title">Nima Uchun <span>Biz?</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="specials-grid">
+                <div class="special-card fade-in">
+                    <div class="special-icon">🍳</div>
+                    <div class="special-text">
+                        <h3>Yangi Mahsulotlar</h3>
+                        <p>Barcha mahsulotlarimiz har kuni yangi yetkazib beriladi. Sifat — bizning ustuvorligimiz.</p>
+                    </div>
+                </div>
+                <div class="special-card fade-in">
+                    <div class="special-icon">🚚</div>
+                    <div class="special-text">
+                        <h3>Tez Yetkazish</h3>
+                        <p>30 daqiqa ichida yetkazib beramiz. Issiq va mazali taomlar eshigingizgacha.</p>
+                    </div>
+                </div>
+                <div class="special-card fade-in">
+                    <div class="special-icon">👨‍🍳</div>
+                    <div class="special-text">
+                        <h3>Professional Oshpazlar</h3>
+                        <p>25 yillik tajribaga ega professional oshpazlarimiz sizga eng yaxshi taomlarni tayyorlaydi.</p>
+                    </div>
+                </div>
+                <div class="special-card fade-in">
+                    <div class="special-icon">💰</div>
+                    <div class="special-text">
+                        <h3>Qulay Narxlar</h3>
+                        <p>Sifatli taomlar hamyonbop narxlarda. Har kuni maxsus chegirmalar va aksiyalar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="section gallery" id="gallery">
+            <div class="section-header">
+                <div class="section-badge">Galereya</div>
+                <h2 class="section-title">Bizning <span>Fotolar</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">🥘<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item">🍕<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item">🍝<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item">🎂<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item">🥗<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+                <div class="gallery-item">☕<div class="gallery-overlay"><i class="fas fa-search-plus"></i></div></div>
+            </div>
+        </section>
+
+        <!-- CHEFS -->
+        <section class="section chefs" id="chefs">
+            <div class="section-header">
+                <div class="section-badge">Jamoa</div>
+                <h2 class="section-title">Bizning <span>Oshpazlar</span></h2>
+                <div class="section-line"></div>
+                <p class="section-desc">Professional va tajribali oshpazlarimiz siz uchun eng sara taomlarni tayyorlaydi</p>
+            </div>
+            <div class="chefs-grid">
+                <div class="chef-card fade-in">
+                    <div class="chef-avatar">👨‍🍳</div>
+                    <h3 class="chef-name">Sardor Karimov</h3>
+                    <p class="chef-role">Bosh Oshpaz</p>
+                    <div class="chef-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="chef-card fade-in">
+                    <div class="chef-avatar">👩‍🍳</div>
+                    <h3 class="chef-name">Nilufar Rahimova</h3>
+                    <p class="chef-role">Konditer</p>
+                    <div class="chef-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="chef-card fade-in">
+                    <div class="chef-avatar">👨‍🍳</div>
+                    <h3 class="chef-name">Anvar Toshev</h3>
+                    <p class="chef-role">Grill Ustasi</p>
+                    <div class="chef-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="chef-card fade-in">
+                    <div class="chef-avatar">👩‍🍳</div>
+                    <h3 class="chef-name">Madina Azimova</h3>
+                    <p class="chef-role">Salat Ustasi</p>
+                    <div class="chef-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section testimonials">
+            <div class="section-header">
+                <div class="section-badge">Fikrlar</div>
+                <h2 class="section-title">Mijozlar <span>Fikrlari</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Sardor Kafe — mening sevimli restoranlarimdan biri. Taomlar juda mazali va xizmat ko'rsatish a'lo darajada!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">A</div>
+                        <div>
+                            <div class="testimonial-name">Abdulloh R.</div>
+                            <div class="testimonial-role">Doimiy mijoz</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Oilam bilan har dam olish kunida shu yerga kelamiz. Bolalar uchun maxsus menyu bor — juda qulay!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div>
+                            <div class="testimonial-name">Malika S.</div>
+                            <div class="testimonial-role">Oilaviy mijoz</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"Yetkazib berish xizmati juda tez va taomlar issiq holda keladi. Narxlari ham juda qulay. Tavsiya qilaman!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">J</div>
+                        <div>
+                            <div class="testimonial-name">Jasur T.</div>
+                            <div class="testimonial-role">Onlayn buyurtmachi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESERVATION -->
+        <section class="section reservation" id="reservation">
+            <div class="section-header">
+                <div class="section-badge">Band Qilish</div>
+                <h2 class="section-title">Joy <span>Band Qiling</span></h2>
+                <div class="section-line"></div>
+                <p class="section-desc">Maxsus kuningizni biz bilan nishonlang</p>
+            </div>
+            <div class="reservation-container fade-in">
+                <form id="reservationForm" onsubmit="submitReservation(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ismingiz</label>
+                            <input type="text" placeholder="Ismingizni kiriting" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon raqam</label>
+                            <input type="tel" placeholder="+998 90 123 45 67" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Sana</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Vaqt</label>
+                            <input type="time" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Mehmonlar soni</label>
+                            <select required>
+                                <option value="">Tanlang</option>
+                                <option>1-2 kishi</option>
+                                <option>3-4 kishi</option>
+                                <option>5-6 kishi</option>
+                                <option>7-10 kishi</option>
+                                <option>10+ kishi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tadbir turi</label>
+                            <select>
+                                <option value="">Tanlang</option>
+                                <option>Tug'ilgan kun</option>
+                                <option>To'y yulduzchasi</option>
+                                <option>Korporativ tadbir</option>
+                                <option>Romantik kechki ovqat</option>
+                                <option>Boshqa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group form-full">
+                            <label>Qo'shimcha izoh</label>
+                            <textarea placeholder="Qo'shimcha tilaklar yoki maxsus so'rovlar..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Band Qilish
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section contact" id="contact">
+            <div class="section-header">
+                <div class="section-badge">Aloqa</div>
+                <h2 class="section-title">Biz Bilan <span>Bog'laning</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Manzil</h4>
+                            <p>Toshkent shahar, Chilonzor tumani,<br>Bunyodkor ko'chasi, 45-uy</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Telefon</h4>
+                            <p>+998 90 123 45 67<br>+998 71 234 56 78</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>info@sardorkafe.uz<br>booking@sardorkafe.uz</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Ish vaqti</h4>
+                            <p>Dushanba - Yakshanba: 09:00 - 23:00<br>Juma - Shanba: 09:00 - 01:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <input type="text" placeholder="Ismingiz" required>
+                    <input type="email" placeholder="Email manzilingiz" required>
+                    <input type="text" placeholder="Mavzu">
+                    <textarea placeholder="Xabaringiz..."></textarea>
+                    <button class="btn-primary" onclick="showNotification('Xabaringiz yuborildi! Tez orada javob beramiz.')">
+                        <i class="fas fa-paper-plane"></i> Yuborish
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>SARDOR <span>KAFE</span></h3>
+                    <p>Eng sara taomlar, nozik atmosfera va unutilmas lahzalar. 2009-yildan beri sizga xizmat qilishdan faxrlanamiz.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Sahifalar</h4>
+                    <ul>
+                        <li><a href="#home">Bosh sahifa</a></li>
+                        <li><a href="#about">Biz haqimizda</a></li>
+                        <li><a href="#menu">Menyu</a></li>
+                        <li><a href="#gallery">Galereya</a></li>
+                        <li><a href="#chefs">Oshpazlar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Xizmatlar</h4>
+                    <ul>
+                        <li><a href="#">Yetkazib berish</a></li>
+                        <li><a href="#">Joy band qilish</a></li>
+                        <li><a href="#">Korporativ tadbirlar</a></li>
+                        <li><a href="#">Tug'ilgan kunlar</a></li>
+                        <li><a href="#">To'y marosimlari</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Ish vaqti</h4>
+                    <ul>
+                        <li><a href="#">Dush-Jum: 09:00-23:00</a></li>
+                        <li><a href="#">Jum-Shan: 09:00-01:00</a></li>
+                        <li><a href="#">Yakshanba: 10:00-22:00</a></li>
+                        <li><a href="#">Bayramlar: 10:00-00:00</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 <span>SARDOR KAFE</span>. Barcha huquqlar himoyalangan.</p>
+                <p>Designed with <span>❤</span> by Professional Team</p>
+            </div>
+        </footer>
+
+        <!-- CART SIDEBAR -->
+        <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+        <div class="cart-sidebar" id="cartSidebar">
+            <div class="cart-header">
+                <h3>🛒 Savatcha</h3>
+                <button class="cart-close" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <div class="cart-empty">
+                    <i class="fas fa-shopping-bag"></i>
+                    <p>Savatcha bo'sh</p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Jami:</span>
+                    <span id="cartTotal">0 so'm</span>
+                </div>
+                <button class="cart-checkout" onclick="checkout()">
+                    <i class="fas fa-credit-card"></i> Buyurtma Berish
+                </button>
+            </div>
+        </div>
+
+        <!-- LOGIN MODAL -->
+        <div class="login-modal" id="loginModal">
+            <div class="login-box">
+                <button class="login-close" onclick="closeLogin()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Admin <span>Panel</span></h2>
+                <p>Tizimga kirish uchun ma'lumotlaringizni kiriting</p>
+                <div class="form-group">
+                    <label>Login</label>
+                    <input type="text" id="loginUser" placeholder="admin" value="admin">
+                </div>
+                <div class="form-group">
+                    <label>Parol</label>
+                    <input type="password" id="loginPass" placeholder="••••••" value="admin123">
+                </div>
+                <p class="login-error" id="loginError">Login yoki parol noto'g'ri!</p>
+                <button class="login-btn" onclick="attemptLogin()">
+                    <i class="fas fa-sign-in-alt"></i> Kirish
+                </button>
+                <p style="color: var(--gray); font-size: 0.8rem; margin-top: 15px;">
+                    Login: admin | Parol: admin123
+                </p>
+            </div>
+        </div>
+
+        <!-- ADMIN PANEL -->
+        <div class="admin-panel" id="adminPanel">
+            <div class="admin-sidebar">
+                <div class="admin-logo">
+                    <h2>SARDOR <span>ADMIN</span></h2>
+                    <p>Boshqaruv paneli</p>
+                </div>
+                <ul class="admin-nav">
+                    <li><a href="#" class="active" onclick="switchAdminTab('dashboard', this)">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a></li>
+                    <li><a href="#" onclick="switchAdminTab('orders', this)">
+                        <i class="fas fa-shopping-bag"></i> Buyurtmalar
+                    </a></li>
+                    <li><a href="#" onclick="switchAdminTab('menu-admin', this)">
+                        <i class="fas fa-utensils"></i> Menyu Boshqarish
+                    </a></li>
+                    <li><a href="#" onclick="switchAdminTab('reservations', this)">
+                        <i class="fas fa-calendar-check"></i> Band Qilishlar
+                    </a></li>
+                    <li><a href="#" onclick="switchAdminTab('customers', this)">
+                        <i class="fas fa-users"></i> Mijozlar
+                    </a></li>
+                    <li><a href="#" onclick="switchAdminTab('messages', this)">
+                        <i class="fas fa-envelope"></i> Xabarlar
+                    </a></li>
+                    <li><a href="#" onclick="switchAdminTab('settings', this)">
+                        <i class="fas fa-cog"></i> Sozlamalar
+                    </a></li>
+                    <li><a href="#" onclick="closeAdmin()" style="color: var(--red);">
+                        <i class="fas fa-sign-out-alt"></i> Chiqish
+                    </a></li>
+                </ul>
+            </div>
+            <div class="admin-content">
+                <div class="admin-header">
+                    <h1 id="adminTitle">Dashboard</h1>
+                    <div class="admin-header-right">
+                        <div class="admin-user">
+                            <div class="admin-user-avatar">A</div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Admin</div>
+                                <div style="font-size: 0.75rem; color: var(--gray);">Super Admin</div>
+                            </div>
+                        </div>
+                        <button class="admin-close" onclick="closeAdmin()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="admin-body">
+                    <!-- DASHBOARD TAB -->
+                    <div class="admin-tab active" id="tab-dashboard">
+                        <div class="admin-stats">
+                            <div class="admin-stat-card">
+                                <div class="icon gold"><i class="fas fa-dollar-sign"></i></div>
+                                <h3>12,450,000</h3>
+                                <p>Oylik daromad (so'm)</p>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div class="icon green"><i class="fas fa-shopping-bag"></i></div>
+                                <h3>1,247</h3>
+                                <p>Oylik buyurtmalar</p>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div class="icon blue"><i class="fas fa-users"></i></div>
+                                <h3>8,543</h3>
+                                <p>Ro'yxatdan o'tgan mijozlar</p>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div class="icon red"><i class="fas fa-calendar-check"></i></div>
+                                <h3>342</h3>
+                                <p>Oylik band qilishlar</p>
+                            </div>
+                        </div>
+                        <div class="admin-table-container">
+                            <div class="admin-table-header">
+                                <h3>So'nggi Buyurtmalar</h3>
+                                <button class="admin-table-btn" onclick="switchAdminTab('orders', document.querySelector('.admin-nav a:nth-child(2)'))">
+                                    Barchasini ko'rish
+                                </button>
+                            </div>
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Mijoz</th>
+                                        <th>Taomlar</th>
+                                        <th>Summa</th>
+                                        <th>Holat</th>
+                                        <th>Sana</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#1247</td>
+                                        <td>Abdulloh R.</td>
+                                        <td>Osh, Chuchvara, Non</td>
+                                        <td>85,000 so'm</td>
+                                        <td><span class="status-badge completed">Tayyor</span></td>
+                                        <td>2024-01-15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#1246</td>
+                                        <td>Malika S.</td>
+                                        <td>Lag'mon, Salat</td>
+                                        <td>65,000 so'm</td>
+                                        <td><span class="status-badge pending">Jarayonda</span></td>
+                                        <td>2024-01-15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#1245</td>
+                                        <td>Jasur T.</td>
+                                        <td>Pizza, Cola, Desert</td>
+                                        <td>120,000 so'm</td>
+                                        <td><span class="status-badge active">Yangi</span></td>
+                                        <td>2024-01-14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#1244</td>
+                                        <td>Sardor K.</td>
+                                        <td>Shashlik, Non, Choy</td>
+                                        <td>95,000 so'm</td>
+                                        <td><span class="status-badge completed">Tayyor</span></td>
+                                        <td>2024-01-14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#1243</td>
+                                        <td>Nilufar A.</td>
+                                        <td>Manti, Ayron</td>
+                                        <td>55,000 so'm</td>
+                                        <td><span class="status-badge cancelled">Bekor</span></td>
+                                        <td>2024-01-13</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ORDERS TAB -->
+                    <div class="admin-tab" id="tab-orders">
+                        <div class="admin-table-container">
+                            <div class="admin-table-header">
+                                <h3>Barcha Buyurtmalar</h3>
+                                <button class="admin-table-btn" onclick="showNotification('Yangi buyurtma qo\'shildi')">
+                                    <i class="fas fa-plus"></i> Qo'shish
+                                </button>
+                            </div>
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Mijoz</th>
+                                        <th>Telefon</th>
+                                        <th>Taomlar</th>
+                                        <th>Summa</th>
+                                        <th>Holat</th>
+                                        <th>Sana</th>
+                                        <th>Amallar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTableBody">
+                                    <tr>
+                                        <td>#1247</td>
+                                        <td>Abdulloh R.</td>
+                                        <td>+998 90 111 22 33</td>
+                                        <td>Osh, Chuchvara, Non</td>
+                                        <td>85,000 so'm</td>
+                                        <td><span class="status-badge completed">Tayyor</span></td>
+                                        <td>2024-01-15</td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit" title="Tahrirlash"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete" title="O'chirish"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#1246</td>
+                                        <td>Malika S.</td>
+                                        <td>+998 91 222 33 44</td>
+                                        <td>Lag'mon, Salat</td>
+                                        <td>65,000 so'm</td>
+                                        <td><span class="status-badge pending">Jarayonda</span></td>
+                                        <td>2024-01-15</td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit" title="Tahrirlash"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete" title="O'chirish"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#1245</td>
+                                        <td>Jasur T.</td>
+                                        <td>+998 93 333 44 55</td>
+                                        <td>Pizza, Cola, Desert</td>
+                                        <td>120,000 so'm</td>
+                                        <td><span class="status-badge active">Yangi</span></td>
+                                        <td>2024-01-14</td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit" title="Tahrirlash"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete" title="O'chirish"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- MENU ADMIN TAB -->
+                    <div class="admin-tab" id="tab-menu-admin">
+                        <div class="admin-table-container">
+                            <div class="admin-table-header">
+                                <h3>Menyu Boshqarish</h3>
+                                <button class="admin-table-btn" onclick="openMenuModal()">
+                                    <i class="fas fa-plus"></i> Yangi Taom
+                                </button>
+                            </div>
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Taom nomi</th>
+                                        <th>Kategoriya</th>
+                                        <th>Narx</th>
+                                        <th>Holat</th>
+                                        <th>Amallar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="menuAdminTableBody">
+                                    <!-- Loaded by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- RESERVATIONS TAB -->
+                    <div class="admin-tab" id="tab-reservations">
+                        <div class="admin-table-container">
+                            <div class="admin-table-header">
+                                <h3>Band Qilishlar</h3>
+                                <button class="admin-table-btn">
+                                    <i class="fas fa-calendar-plus"></i> Yangi
+                                </button>
+                            </div>
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ism</th>
+                                        <th>Telefon</th>
+                                        <th>Sana</th>
+                                        <th>Vaqt</th>
+                                        <th>Mehmonlar</th>
+                                        <th>Holat</th>
+                                        <th>Amallar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#R001</td>
+                                        <td>Sardor Karimov</td>
+                                        <td>+998 90 123 45 67</td>
+                                        <td>2024-01-20</td>
+                                        <td>19:00</td>
+                                        <td>6 kishi</td>
+                                        <td><span class="status-badge pending">Kutilmoqda</span></td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#R002</td>
+                                        <td>Nilufar Rahimova</td>
+                                        <td>+998 91 234 56 78</td>
+                                        <td>2024-01-21</td>
+                                        <td>20:00</td>
+                                        <td>4 kishi</td>
+                                        <td><span class="status-badge active">Tasdiqlangan</span></td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#R003</td>
+                                        <td>Anvar Toshev</td>
+                                        <td>+998 93 345 67 89</td>
+                                        <td>2024-01-22</td>
+                                        <td>18:30</td>
+                                        <td>10 kishi</td>
+                                        <td><span class="status-badge completed">Tugallangan</span></td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CUSTOMERS TAB -->
+                    <div class="admin-tab" id="tab-customers">
+                        <div class="admin-stats">
+                            <div class="admin-stat-card">
+                                <div class="icon gold"><i class="fas fa-users"></i></div>
+                                <h3>8,543</h3>
+                                <p>Jami mijozlar</p>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div class="icon green"><i class="fas fa-user-plus"></i></div>
+                                <h3>156</h3>
+                                <p>Yangi mijozlar (bu hafta)</p>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div class="icon blue"><i class="fas fa-user-check"></i></div>
+                                <h3>2,341</h3>
+                                <p>Faol mijozlar</p>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div class="icon red"><i class="fas fa-crown"></i></div>
+                                <h3>89</h3>
+                                <p>VIP mijozlar</p>
+                            </div>
+                        </div>
+                        <div class="admin-table-container">
+                            <div class="admin-table-header">
+                                <h3>Mijozlar Ro'yxati</h3>
+                                <button class="admin-table-btn">
+                                    <i class="fas fa-user-plus"></i> Qo'shish
+                                </button>
+                            </div>
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ism</th>
+                                        <th>Telefon</th>
+                                        <th>Email</th>
+                                        <th>Buyurtmalar</th>
+                                        <th>Status</th>
+                                        <th>Amallar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#C001</td>
+                                        <td>Abdulloh R.</td>
+                                        <td>+998 90 111 22 33</td>
+                                        <td>abdulloh@mail.com</td>
+                                        <td>47</td>
+                                        <td><span class="status-badge completed">VIP</span></td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#C002</td>
+                                        <td>Malika S.</td>
+                                        <td>+998 91 222 33 44</td>
+                                        <td>malika@mail.com</td>
+                                        <td>23</td>
+                                        <td><span class="status-badge active">Faol</span></td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#C003</td>
+                                        <td>Jasur T.</td>
+                                        <td>+998 93 333 44 55</td>
+                                        <td>jasur@mail.com</td>
+                                        <td>15</td>
+                                        <td><span class="status-badge active">Faol</span></td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- MESSAGES TAB -->
+                    <div class="admin-tab" id="tab-messages">
+                        <div class="admin-table-container">
+                            <div class="admin-table-header">
+                                <h3>Kelgan Xabarlar</h3>
+                                <button class="admin-table-btn">
+                                    <i class="fas fa-sync"></i> Yangilash
+                                </button>
+                            </div>
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Yuboruvchi</th>
+                                        <th>Email</th>
+                                        <th>Mavzu</th>
+                                        <th>Sana</th>
+                                        <th>Holat</th>
+                                        <th>Amallar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#M001</td>
+                                        <td>Sardor Karimov</td>
+                                        <td>sardor@mail.com</td>
+                                        <td>Hamkorlik taklifi</td>
+                                        <td>2024-01-15</td>
+                                        <td><span class="status-badge pending">Yangi</span></td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit"><i class="fas fa-eye"></i></button>
+                                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#M002</td>
+                                        <td>Nilufar R.</td>
+                                        <td>nilufar@mail.com</td>
+                                        <td>Tashakkur xati</td>
+                                        <td>2024-01-14</td>
+                                        <td><span class="status-badge completed">O'qilgan</span></td>
+                                        <td>
+                                            <div class="action-btns">
+                                                <button class="action-btn edit"><i class="fas fa-eye"></i></button>
+                                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- SETTINGS TAB -->
+                    <div class="admin-tab" id="tab-settings">
+                        <div class="reservation-container" style="max-width: 100%;">
+                            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 30px;">
+                                <i class="fas fa-cog" style="color: var(--gold);"></i> Umumiy Sozlamalar
+                            </h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Restoran nomi</label>
+                                    <input type="text" value="SARDOR KAFE">
+                                </div>
+                                <div class="form-group">
+                                    <label>Telefon raqam</label>
+                                    <input type="text" value="+998 90 123 45 67">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" value="info@sardorkafe.uz">
+                                </div>
+                                <div class="form-group">
+                                    <label>Manzil</label>
+                                    <input type="text" value="Toshkent, Chilonzor, Bunyodkor 45">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Ish boshlash vaqti</label>
+                                    <input type="time" value="09:00">
+                                </div>
+                                <div class="form-group">
+                                    <label>Ish tugash vaqti</label>
+                                    <input type="time" value="23:00">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group form-full">
+                                    <label>Tavsif</label>
+                                    <textarea>Eng sara taomlar, nozik atmosfera va unutilmas lahzalar.</textarea>
+                                </div>
+                            </div>
+                            <div class="form-submit">
+                                <button class="btn-primary" onclick="showNotification('Sozlamalar saqlandi!')">
+                                    <i class="fas fa-save"></i> Saqlash
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MENU MODAL -->
+        <div class="modal-overlay" id="menuModal">
+            <div class="modal">
+                <h3>🍽️ Yangi Taom Qo'shish</h3>
+                <div class="form-group">
+                    <label>Taom nomi</label>
+                    <input type="text" id="newDishName" placeholder="Taom nomini kiriting">
+                </div>
+                <div class="form-group">
+                    <label>Kategoriya</label>
+                    <select id="newDishCategory">
+                        <option value="main">Asosiy taomlar</option>
+                        <option value="soup">Sho'rvalar</option>
+                        <option value="salad">Salatlar</option>
+                        <option value="drink">Ichimliklar</option>
+                        <option value="dessert">Desertlar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Narx (so'm)</label>
+                    <input type="number" id="newDishPrice" placeholder="45000">
+                </div>
+                <div class="form-group">
+                    <label>Tavsif</label>
+                    <textarea id="newDishDesc" placeholder="Taom haqida qisqacha..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-save" onclick="addNewDish()">
+                        <i class="fas fa-plus"></i> Qo'shish
+                    </button>
+                    <button class="btn-cancel" onclick="closeMenuModal()">Bekor qilish</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BACK TO TOP -->
+        <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <script>
+            // ===== MENU DATA =====
+            const menuData = [
+                { id: 1, name: "O'zbek Oshi", category: "main", price: 45000, desc: "An'anaviy o'zbek palovi, go'sht va sabzavotlar bilan", emoji: "🍚", badge: "Top" },
+                { id: 2, name: "Chuchvara", category: "main", price: 35000, desc: "Go'shtli chuchvara, qaymoq bilan", emoji: "🥟", badge: "" },
+                { id: 3, name: "Lag'mon", category: "main", price: 40000, desc: "Qo'lda tortilgan lag'mon, sabzavotli sous bilan", emoji: "🍜", badge: "" },
+                { id: 4, name: "Sho'rva", category: "soup", price: 25000, desc: "Go'shtli sho'rva, yangi sabzavotlar bilan", emoji: "🥣", badge: "" },
+                { id: 5, name: "Mastava", category: "soup", price: 28000, desc: "Guruchli sho'rva, go'sht va sabzavotlar bilan", emoji: "🍲", badge: "Yangi" },
+                { id: 6, name: "Sezar Salati", category: "salad", price: 35000, desc: "Tovuq filesi, salat barglari, sezar sousi", emoji: "🥗", badge: "" },
+                { id: 7, name: "Yunon Salati", category: "salad", price: 30000, desc: "Pomidor, bodring, zaytun, feta pishloq", emoji: "🥙", badge: "" },
+                { id: 8, name: "Coca-Cola", category: "drink", price: 8000, desc: "Muzdek Coca-Cola, 0.5L", emoji: "🥤", badge: "" },
+                { id: 9, name: "Yashil Choy", category: "drink", price: 5000, desc: "An'anaviy o'zbek yashil choyi", emoji: "🍵", badge: "" },
+                { id: 10, name: "Fresh Sharbat", category: "drink", price: 15000, desc: "Yangi siqilgan meva sharbati", emoji: "🧃", badge: "Mashhur" },
+                { id: 11, name: "Tiramisu", category: "dessert", price: 35000, desc: "Italyan deserti, kofe va mascarpone bilan", emoji: "🍰", badge: "" },
+                { id: 12, name: "Medovik", category: "dessert", price: 25000, desc: "Asalli tort, qaymoq bilan", emoji: "🎂", badge: "Top" },
+                { id: 13, name: "Shashlik", category: "main", price: 55000, desc: "Ko'mirda pishirilgan qo'y go'shti shashligi", emoji: "🥩", badge: "Premium" },
+                { id: 14, name: "Manti", category: "main", price: 38000, desc: "Go'shtli manti, qaymoq va siruska bilan", emoji: "🥟", badge: "" },
+                { id: 15, name: "Pizza Margarita", category: "main", price: 42000, desc: "Mozzarella, pomidor sousi, bazilik", emoji: "🍕", badge: "" },
+            ];
+
+            let cart = [];
+            let currentFilter = 'all';
+
+            // ===== RENDER MENU =====
+            function renderMenu(filter = 'all') {
+                const grid = document.getElementById('menuGrid');
+                const filtered = filter === 'all' ? menuData : menuData.filter(item => item.category === filter);
+                
+                grid.innerHTML = filtered.map(item => `
+                    <div class="menu-card fade-in visible" data-category="${item.category}">
+                        <div class="menu-card-image">
+                            ${item.emoji}
+                            ${item.badge ? `<div class="menu-card-badge">${item.badge}</div>` : ''}
+                        </div>
+                        <div class="menu-card-body">
+                            <h3 class="menu-card-title">${item.name}</h3>
+                            <p class="menu-card-desc">${item.desc}</p>
+                            <div class="menu-card-footer">
+                                <div class="menu-card-price">${item.price.toLocaleString()} <small>so'm</small></div>
+                                <button class="menu-card-btn" onclick="addToCart(${item.id})">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function filterMenu(category) {
+                currentFilter = category;
+                document.querySelectorAll('.menu-cat-btn').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+                renderMenu(category);
+            }
+
+            // ===== CART FUNCTIONS =====
+            function addToCart(id) {
+                const item = menuData.find(d => d.id === id);
+                const existing = cart.find(c => c.id === id);
+                
+                if (existing) {
+                    existing.qty++;
+                } else {
+                    cart.push({ ...item, qty: 1 });
+                }
+                
+                updateCart();
+                showNotification(`${item.name} savatchaga qo'shildi!`);
+            }
+
+            function removeFromCart(id) {
+                cart = cart.filter(c => c.id !== id);
+                updateCart();
+            }
+
+            function changeQty(id, delta) {
+                const item = cart.find(c => c.id === id);
+                if (item) {
+                    item.qty += delta;
+                    if (item.qty <= 0) {
+                        removeFromCart(id);
+                        return;
+                    }
+                }
+                updateCart();
+            }
+
+            function updateCart() {
+                const countEl = document.getElementById('cartCount');
+                const itemsEl = document.getElementById('cartItems');
+                const totalEl = document.getElementById('cartTotal');
+                
+                const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+                const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+                
+                countEl.textContent = totalQty;
+                
+                if (cart.length === 0) {
+                    itemsEl.innerHTML = `
+                        <div class="cart-empty">
+                            <i class="fas fa-shopping-bag"></i>
+                            <p>Savatcha bo'sh</p>
+                        </div>
+                    `;
+                } else {
+                    itemsEl.innerHTML = cart.map(item => `
+                        <div class="cart-item">
+                            <div class="cart-item-icon">${item.emoji}</div>
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">${(item.price * item.qty).toLocaleString()} so'm</div>
+                                <div class="cart-item-qty">
+                                    <button onclick="changeQty(${item.id}, -1)">-</button>
+                                    <span>${item.qty}</span>
+                                    <button onclick="changeQty(${item.id}, 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `).join('');
+                }
+                
+                totalEl.textContent = totalPrice.toLocaleString() + " so'm";
+            }
+
+            function toggleCart() {
+                document.getElementById('cartOverlay').classList.toggle('active');
+                document.getElementById('cartSidebar').classList.toggle('active');
+            }
+
+            function checkout() {
+                if (cart.length === 0) {
+                    showNotification('Savatcha bo\'sh!');
+                    return;
+                }
+                const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+                showNotification(`Buyurtma qabul qilindi! Jami: ${total.toLocaleString()} so'm`);
+                cart = [];
+                updateCart();
+                toggleCart();
+            }
+
+            // ===== RENDER MENU ADMIN TABLE =====
+            function renderMenuAdminTable() {
+                const tbody = document.getElementById('menuAdminTableBody');
+                tbody.innerHTML = menuData.map(item => `
+                    <tr>
+                        <td>#${item.id}</td>
+                        <td>${item.emoji} ${item.name}</td>
+                        <td>${item.category}</td>
+                        <td>${item.price.toLocaleString()} so'm</td>
+                        <td><span class="status-badge active">Faol</span></td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete" onclick="deleteDish(${item.id})"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            function deleteDish(id) {
+                const index = menuData.findIndex(d => d.id === id);
+                if (index > -1) {
+                    menuData.splice(index, 1);
+                    renderMenuAdminTable();
+                    renderMenu(currentFilter);
+                    showNotification('Taom o\'chirildi!');
+                }
+            }
+
+            function addNewDish() {
+                const name = document.getElementById('newDishName').value;
+                const category = document.getElementById('newDishCategory').value;
+                const price = parseInt(document.getElementById('newDishPrice').value);
+                const desc = document.getElementById('newDishDesc').value;
+                
+                if (!name || !price) {
+                    showNotification('Iltimos, barcha maydonlarni to\'ldiring!');
+                    return;
+                }
+                
+                const newId = Math.max(...menuData.map(d => d.id)) + 1;
+                menuData.push({
+                    id: newId,
+                    name,
+                    category,
+                    price,
+                    desc: desc || 'Yangi taom',
+                    emoji: '🍽️',
+                    badge: 'Yangi'
+                });
+                
+                renderMenuAdminTable();
+                renderMenu(currentFilter);
+                closeMenuModal();
+                showNotification('Yangi taom qo\'shildi!');
+                
+                // Clear form
+                document.getElementById('newDishName').value = '';
+                document.getElementById('newDishPrice').value = '';
+                document.getElementById('newDishDesc').value = '';
+            }
+
+            function openMenuModal() {
+                document.getElementById('menuModal').classList.add('active');
+            }
+
+            function closeMenuModal() {
+                document.getElementById('menuModal').classList.remove('active');
+            }
+
+            // ===== NOTIFICATION =====
+            function showNotification(text) {
+                const notif = document.getElementById('notification');
+                document.getElementById('notification-text').textContent = text;
+                notif.classList.add('show');
+                setTimeout(() => notif.classList.remove('show'), 3000);
+            }
+
+            // ===== NAVIGATION =====
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                const backToTop = document.getElementById('backToTop');
+                
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
             });
-        });
-    </script>
-</body>
-</html>
+
+            // ===== MOBILE MENU =====
+            function toggleMobileMenu() {
+                document.getElementById('hamburger').classList.toggle('active');
+                document.getElementById('navLinks').classList.toggle('mobile-active');
+            }
+
+            // ===== LOGIN =====
+            function showLogin() {
+                document.getElementById('loginModal').classList.add('active');
+            }
+
+            function closeLogin() {
+                document.getElementById('loginModal').classList.remove('active');
+                document.getElementById('loginError').style.display = 'none';
+            }
+
+            function attemptLogin() {
+                const user = document.getElementById('loginUser').value;
+                const pass = document.getElementById('loginPass').value;
+                
+                if (user === 'admin' && pass === 'admin123') {
+                    closeLogin();
+                    document.getElementById('adminPanel').classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    showNotification('Admin panelga xush kelibsiz!');
+                } else {
+                    document.getElementById('loginError').style.display = 'block';
+                }
+            }
+
+            function closeAdmin() {
+                document.getElementById('adminPanel').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // ===== ADMIN TABS =====
+            function switchAdminTab(tabId, el) {
+                document.querySelectorAll('.admin-tab').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('.admin-nav a').forEach(a => a.classList.remove('active'));
+                
+                document.getElementById('tab-' + tabId).classList.add('active');
+                if (el) el.classList.add('active');
+                
+                const titles = {
+                    'dashboard': 'Dashboard',
+                    'orders': 'Buyurtmalar',
+                    'menu-admin': 'Menyu Boshqarish',
+                    'reservations': 'Band Qilishlar',
+                    'customers': 'Mijozlar',
+                    'messages': 'Xabarlar',
+                    'settings': 'Sozlamalar'
+                };
+                document.getElementById('adminTitle').textContent = titles[tabId] || 'Dashboard';
+            }
+
+            // ===== RESERVATION FORM =====
+            function submitReservation(e) {
+                e.preventDefault();
+                showNotification('Joy band qilindi! Tez orada siz bilan bog\'lanamiz.');
+                e.target.reset();
+            }
+
+            // ===== SCROLL ANIMATIONS =====
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            // ===== COUNTER ANIMATION =====
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        let current = 0;
+                        const increment = target / 100;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target.toLocaleString() + '+';
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current).toLocaleString();
+                            }
+                        }, 20);
+                        counterObserver.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+
+            // ===== PRELOADER =====
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    document.getElementById('preloader').classList.add('hidden');
+                }, 1500);
+            });
+
+            // ===== INIT =====
+            renderMenu();
+            renderMenuAdminTable();
+
+            // Close modals on overlay click
+            document.getElementById('menuModal').addEventListener('click', function(e) {
+                if (e.target === this) closeMenuModal();
+            });
+
+            document.getElementById('loginModal').addEventListener('click', function(e) {
+                if (e.target === this) closeLogin();
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeLogin();
+                    closeMenuModal();
+                    closeAdmin();
+                    if (document.getElementById('cartSidebar').classList.contains('active')) {
+                        toggleCart();
+                    }
+                }
+            });
+        </script>
+    </body>
+    </html>
